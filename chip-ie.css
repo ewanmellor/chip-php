@@ -1,0 +1,29 @@
+/*
+
+CHIP: Code Highlighting in PHP.
+
+Copyright (c) 2004-2005 Ewan Mellor <chip@ewanmellor.org.uk>.  All rights
+reserved.
+
+*/
+
+
+@media screen
+{
+  .chip-breadcrumbs
+  {
+    padding: 0;
+    background: transparent;
+  }
+
+  .chip-toplink
+  {
+    width: 100%;
+    padding: 0;
+  }
+
+  .chip-breadcrumbSkipper
+  {
+    display: none;
+  }
+}

@@ -1,0 +1,32 @@
+#!/bin/sh
+
+set -eu
+
+S="/usr/share/chip"
+
+. "$S/instrm-helper"
+
+function makeLink()
+{
+  if [ ! -e "$S/$1" ]
+  then
+    ln -s "/etc/chip/$1" "$S"
+  fi
+}
+
+makeLink chip.css
+makeLink chip-ie.css
+
+if [ -e "$HTTPD_CONF" ]
+then
+  if ! grep "$LINE" "$HTTPD_CONF" >/dev/null
+  then
+      echo -n "Configuring CHIP with Apache ... "
+      echo "$COMMENT_BLOCK$LINE" >>"$HTTPD_CONF"
+      echo "done."
+  fi
+
+  # We need to reload Apache even if the configuration line was already
+  # installed, in case 50chip.conf has changed.
+  invoke-rc.d apache reload
+fi

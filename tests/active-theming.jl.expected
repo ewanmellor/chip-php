@@ -1,0 +1,907 @@
+<!DOCTYPE html PUBLIC
+               "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>active-theming.jl</title>
+<meta http-equiv='Page-Enter'
+           content='revealTrans(duration="1",transition="20")' />
+<link rel="stylesheet" href="chip.css" title="CHIP"
+      type="text/css" />
+<!--[if IE]>
+<link href="chip-ie.css" rel="stylesheet" type="text/css"
+      media="screen">
+<![endif]-->
+<script type="text/javascript" src="rot13.js"></script>
+<script type="text/javascript" src="chip.js"></script>
+<script type="text/javascript">
+// <!--
+
+chipFilePath = 'active-theming.jl';
+chipPlainPageAnchorText = '(Load active-theming.jl without formatting)';
+chipEmailLabelPrefix = 'chip-rotemailaddress';
+chipTopLinkLabel = 'chip-toplink';
+chipBottomLinkLabel = 'chip-bottomlink';
+
+  function chipOnload()
+  {
+
+    chipFixRotEmails();
+    chipFixLinks();
+  }
+
+// -->
+</script>
+</head>
+<body onload="javascript:chipOnload()">
+<p style="text-align: right"><span id='chip-toplink'>
+To load this file without formatting, visit active-theming.jl.  This is a spam-protection
+measure; sorry for the inconvenience.
+</span>
+</p>
+<p style="text-align: center">&middot; active-theming.jl &middot;</p>
+<pre>
+<span class="l">&nbsp;&nbsp;&nbsp;1</span><span class='chip-comment'>#|                                                                              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>Active-Theming Sawfish Module.  Version 1.1.                                    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;5</span>Copyright (c) 2004 Ewan Mellor &lt;<span id='chip-rotemailaddress0'>fnjsvfu at rjnazryybe.bet.hx</span>&gt;.                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>Copyright (c) 2004 Andrew Rice &lt;<span id='chip-rotemailaddress1'>naql at naqlevpr.arg</span>&gt;.                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>All rights reserved.                                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>Permission is hereby granted, free of charge, to any person obtaining a copy    
+<span class="l">&nbsp;&nbsp;10</span>of this software and associated documentation files (the "Software"), to deal   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>in the Software without restriction, including without limitation the rights    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>to use, copy, modify, merge, publish, distribute, sublicense, and/or sell       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>copies of the Software, and to permit persons to whom the Software is           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>furnished to do so, subject to the following conditions:                        
+<span class="l">&nbsp;&nbsp;15</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  The above copyright notice and this permission notice shall be included in    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  all copies or substantial portions of the Software.                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR    
+<span class="l">&nbsp;&nbsp;20</span>  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS  
+<span class="l">&nbsp;&nbsp;25</span>  IN THE SOFTWARE.                                                              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>Active-Theming varies the colour of window frames depending upon                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;30</span>  the host from which the window comes,                                         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  whether root is logged on at the window,                                      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  whether the window is focussed,                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  the window's title,                                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  the window's group,                                                           
+<span class="l">&nbsp;&nbsp;35</span>  the window's position,                                                        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  the window's stickiness, or                                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  the workspace on which the window is placed.                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>This can be used to convey useful information, or simply to make your desktop   
+<span class="l">&nbsp;&nbsp;40</span>more colourful.                                                                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>Colours may either be varied using the RGB or the HSV colour models.  Any       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>variation method from the list above may vary along any of the axes, so you     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>could change the hue depending upon the host, the saturation if root is logged  
+<span class="l">&nbsp;&nbsp;45</span>in, and the value when the window is focussed, for example.  Alternatively,     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>you could have windows becoming more red depending upon the workspace and       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>heading towards white when the window is focussed by varying both green and     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>blue axes when the window is focussed.                                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;50</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>This module needs support from your current theme.  In the Sawfish              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>distribution, the mono and simple themes have this support.                     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>Install this file by placing it inside your ~/.sawfish/lisp/ directory, and     
+<span class="l">&nbsp;&nbsp;55</span>then place the following lines into your ~/.sawfish/rc:                         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(require 'active-theming)                                                       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(active-theming-initialise)                                                     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;60</span>This module may be configured using the Sawfish Configurator (sawfish-ui);      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>its options will appear in the Appearance -&gt; Active-Theming group.  Make sure   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>you are using a supporting theme too!                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>This module depends upon the hsv (version 1.2+) and string2 (version 1.6+)      
+<span class="l">&nbsp;&nbsp;65</span>modules, available from                                                         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-url'><a href='http://www.ewanmellor.org.uk/sawfish.html'>http://www.ewanmellor.org.uk/sawfish.html</a></span>                                       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;70</span>The colour model is set using the variable active-theming:model.  Then, each    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>colour axis is varied using "methods".  When the RGB colour model is            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>being used, the primary-method affects the red axis, the secondary-method       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>affects the green axis, and the tertiary-method affects the blue axis.  When    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>the HSV model is in use, the primary-, secondary-, and tertiary-methods affect  
+<span class="l">&nbsp;&nbsp;75</span>the hue, saturation, and value axes respectively.  Each method variable may be  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>one of (focus, group, host, position, root, sticky, title, workspace).  These   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>are explained below.                                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>Each method takes parameters from the variables active-theming:base-color and   
+<span class="l">&nbsp;&nbsp;80</span>active-theming:far-color.  These colours define in some way the range on the    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>appropriate axis over which the method will apply.  The base colour is used in  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>the "normal" case (window not focussed, root not logged in, or whatever) and    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>the far colour is used in the alternative situation.                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;85</span>Some methods use a hash to generate the value required.  This results in a      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>random value along the appropriate axis; the far colour is ignored.             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>Focus Method                                                                    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>------------                                                                    
+<span class="l">&nbsp;&nbsp;90</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>The appropriate component from the base colour if the window is not focussed,   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>or from the far colour if it is.                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>Group Method                                                                    
+<span class="l">&nbsp;&nbsp;95</span>------------                                                                    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>A hash of the window's group ID.                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>Host Method                                                                     
+<span class="l">&nbsp;100</span>-----------                                                                     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>The appropriate component from the base colour if the host is                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>active-theming:base-host, or a hash of the hostname otherwise.                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;105</span>active-theming:base-host defaults to the machine on which you are running       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>Sawfish.                                                                        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>The actual host of the window is determined either from the window's title,     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>as explained in the Window Title User and Host Information section below, or    
+<span class="l">&nbsp;110</span>from the X property WM_CLIENT_MACHINE.  This means that for terminals you need  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>to set the title as explained below, and for remote X windows everything        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>should just work.                                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>Position Method                                                                 
+<span class="l">&nbsp;115</span>---------------                                                                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>The appropriate component from the base colour if the position is               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>active-theming:base-position, or a hash of the position otherwise.              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;120</span>Using this method to adjust hue results in a lovely Spectrum-style loading      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>effect when dragging windows!                                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>Root Method                                                                     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>-----------                                                                     
+<span class="l">&nbsp;125</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>The appropriate component from the base colour if not logged in as root         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>through the current terminal, or the far colour if so.                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>Whether root is logged in is determined from the window's title as explained    
+<span class="l">&nbsp;130</span>in the Window Title User and Host Information section below.                    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>Sticky Method                                                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>-------------                                                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;135</span>The appropriate component from the base colour if the window is not sticky,     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>or the far colour if so.                                                        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>Title Method                                                                    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>------------                                                                    
+<span class="l">&nbsp;140</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>The appropriate component from the base colour if the title is                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>active-theming:base-title, or a hash of the title otherwise.                    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>Workspace Method                                                                
+<span class="l">&nbsp;145</span>----------------                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>The appropriate component from the base colour if the current workspace is      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>named as specified by active-theming:base-workspace, or a hash of the reverse   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>of the workspace name otherwise.  The workspace name is either that given by    
+<span class="l">&nbsp;150</span>the Sawfish variable workspace-names, or "Workspace X" where X is the           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>workspace number otherwise.  The reverse of the name is used because this       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>gives better behaviour when no workspaces are explicitly named.                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;155</span>Window Title User and Host Information                                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>--------------------------------------                                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>The root and host methods use the window title to give them the information     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>required.                                                                       
+<span class="l">&nbsp;160</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>In the default configuration, the window title must contain "user@host:",       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>where user and host give the required information.  This can be generated when  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>using the bash shell by setting PS1 to contain something like                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>'\[\033]0;\u@\h: \w\007\]'.  This escape sequence sets the title of the window  
+<span class="l">&nbsp;165</span>to look like "user@host: /current/path".                                        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>I actually use                                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>if [ "$UID" != "0" ] &amp;&amp; [ "$HOSTNAME" = "punt" ]                                
+<span class="l">&nbsp;170</span>then                                                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  PS1='\W \$ \[\033]0;\w\007\]'                                                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>else                                                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  PS1='\W \$ \[\033]0;\u@\h: \w\007\]'                                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>fi                                                                              
+<span class="l">&nbsp;175</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(punt is my local machine).  This sets the title as above when logged in to     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>remote machines, sets it only to show the full current path when working        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>locally, and in all cases sets the main bash prompt to be the innermost         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>directory of the current path, followed by a $ when logged on normally, and a   
+<span class="l">&nbsp;180</span># when logged in as root.  This interacts perfectly with Active-Theming, and    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>keeps my terminals uncluttered yet informative.                                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>You need PS1 to be set in the .bashrc of all the systems to which you log in.   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;185</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>The title format is actually determined by the active-theming:user-regexp and   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>active-theming:host-regexp.  These can be changed to match your preferred       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>window title layout.                                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;190</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>Ignored Titles                                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>--------------                                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;195</span>When the window title changes, sometimes that change is ignored.  This happens  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>when the title matches active-theming:ignored-titles-regexp.  In the default    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>setting, this means that if you are using the program 'screen' with its         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>hardstatus option enabled, then transient messages from screen will not affect  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>the window's colours.                                                           
+<span class="l">&nbsp;200</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>Developing This Module                                                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>======================                                                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;205</span>If you wish to reload this module during development, you should call           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(active-theming-deinitialise) first.  This removes the hooks installed by       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>active-theming-initialise; failure to do this may make behaviour glitchy.       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>Since hooks are used to indicate when window settings have changed, manual      
+<span class="l">&nbsp;210</span>changes to Active-Theming settings will not immediately take effect.  Use the   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>active-theming-refresh-all method to fix this.                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>This module uses the American spelling of "color" in all function and variable  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>names, despite both authors being English.  Sawfish uses "color" itself, so we  
+<span class="l">&nbsp;215</span>have followed that for consistency.  The non-technical documentation uses       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>British spellings throughout, because we are stubborn.                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>Theme Interface                                                                 
+<span class="l">&nbsp;220</span>---------------                                                                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>For each managed window this module sets two window properties:                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>frame-active-color and frame-inactive-color.  These two properties may be read  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>by the active theme and used to set appropriate colours in the window           
+<span class="l">&nbsp;225</span>decoration.  The Simple theme in the Sawfish distribution                       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(themes/simple/theme.jl) contains an excellent example showing how to achieve   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>this whilst falling back to standard ways of setting the colour if the          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>Active-Theming module is not installed.                                         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;230</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>|#</span>                                                                              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(<span class='chip-keyword'>define-structure</span> active-theming                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (<span class='chip-keyword'>export</span> active-theming:base-color                                             
+<span class="l">&nbsp;235</span>          active-theming:far-color                                              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>          active-theming:model                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>          active-theming:primary-method                                         
+<span class="l">&nbsp;240</span>          active-theming:secondary-method                                       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>          active-theming:tertiary-method                                        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>          active-theming:primary-hash-all                                       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>          active-theming:secondary-hash-all                                     
+<span class="l">&nbsp;245</span>          active-theming:tertiary-hash-all                                      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>          active-theming:base-host                                              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>          active-theming:base-position                                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>          active-theming:base-title                                             
+<span class="l">&nbsp;250</span>          active-theming:base-workspace                                         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>          active-theming:ignored-titles-regexp                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>          active-theming:host-regexp                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>          active-theming:user-regexp                                            
+<span class="l">&nbsp;255</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>          active-theming-initialise                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>          active-theming-deinitialise                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>          active-theming-refresh                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>          active-theming-refresh-all                                            
+<span class="l">&nbsp;260</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>          active-theming-current-value                                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>          active-theming-method-focus                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>          active-theming-method-group                                           
+<span class="l">&nbsp;265</span>          active-theming-method-host                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>          active-theming-method-position                                        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>          active-theming-method-root                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>          active-theming-method-sticky                                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>          active-theming-method-title                                           
+<span class="l">&nbsp;270</span>          active-theming-method-workspace                                       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>          )                                                                     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (<span class='chip-keyword'>open</span> rep                                                                     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>        rep.data.tables                                                         
+<span class="l">&nbsp;275</span>        rep.io.processes                                                        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>        rep.regexp                                                              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>        rep.system                                                              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>        sawfish.wm                                                              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>        hsv                                                                     
+<span class="l">&nbsp;280</span>        string2                                                                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>        )                                                                       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(<span class='chip-keyword'>define</span> (deferred-refresh) (active-theming-refresh-all))                        
+<span class="l">&nbsp;285</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(<span class='chip-keyword'>defgroup</span> active-theming "<span class='chip-string'>Active-Theming</span>"                                       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>group</span> appearance)                                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(<span class='chip-keyword'>defcustom</span> active-theming:base-color (hsv-to-color 200 0.5 0.6)                 
+<span class="l">&nbsp;290</span>  "<span class='chip-string'>Base colour for active-theming calculations.</span>"                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>type</span> color                                                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>group</span> (appearance active-theming)                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>user-level</span> novice                                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>after-set</span> deferred-refresh)                                                  
+<span class="l">&nbsp;295</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(<span class='chip-keyword'>defcustom</span> active-theming:far-color (hsv-to-color 330 1.0 0.85)                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  "<span class='chip-string'>The colour at the far end of the active-theming calculations.</span>"               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>type</span> color                                                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>group</span> (appearance active-theming)                                            
+<span class="l">&nbsp;300</span>  :<span class='chip-variable'>user-level</span> novice                                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>after-set</span> deferred-refresh)                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(<span class='chip-keyword'>defcustom</span> active-theming:model  'HSV                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  "<span class='chip-string'>The colour model to be used for active-theming calculations.</span>"                
+<span class="l">&nbsp;305</span>  :<span class='chip-variable'>type</span> (set HSV RGB)                                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>group</span> (appearance active-theming)                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>user-level</span> novice                                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>after-set</span> deferred-refresh)                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;310</span>(<span class='chip-keyword'>defcustom</span> active-theming:primary-method  'host                                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  "<span class='chip-string'>The method used to change the hue / red component.</span>"                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>type</span> (set focus                                                              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>             group                                                              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>             host                                                               
+<span class="l">&nbsp;315</span>             position                                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>             root                                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>             sticky                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>             title                                                              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>             workspace)                                                         
+<span class="l">&nbsp;320</span>  :<span class='chip-variable'>group</span> (appearance active-theming)                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>user-level</span> novice                                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>after-set</span> deferred-refresh)                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(<span class='chip-keyword'>defcustom</span> active-theming:secondary-method  'root                               
+<span class="l">&nbsp;325</span>  "<span class='chip-string'>The method used to change the saturation / green component.</span>"                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>type</span> (set focus                                                              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>             group                                                              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>             host                                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>             position                                                           
+<span class="l">&nbsp;330</span>             root                                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>             sticky                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>             title                                                              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>             workspace)                                                         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>group</span> (appearance active-theming)                                            
+<span class="l">&nbsp;335</span>  :<span class='chip-variable'>user-level</span> novice                                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>after-set</span> deferred-refresh)                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(<span class='chip-keyword'>defcustom</span> active-theming:tertiary-method  'focus                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  "<span class='chip-string'>The method used to change the value / blue component.</span>"                       
+<span class="l">&nbsp;340</span>  :<span class='chip-variable'>type</span> (set focus                                                              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>             group                                                              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>             host                                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>             position                                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>             root                                                               
+<span class="l">&nbsp;345</span>             sticky                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>             title                                                              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>             workspace)                                                         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>group</span> (appearance active-theming)                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>user-level</span> novice                                                            
+<span class="l">&nbsp;350</span>  :<span class='chip-variable'>after-set</span> deferred-refresh)                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(<span class='chip-keyword'>defcustom</span> active-theming:primary-hash-all t                                    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  "<span class='chip-string'>Whether to return values across the whole axis when hashing on the primary   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>axis.</span>"                                                                          
+<span class="l">&nbsp;355</span>  :<span class='chip-variable'>type</span> boolean                                                                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>group</span> (appearance active-theming)                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>user-level</span> expert                                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>after-set</span> deferred-refresh)                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;360</span>(<span class='chip-keyword'>defcustom</span> active-theming:secondary-hash-all t                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  "<span class='chip-string'>Whether to return values across the whole axis when hashing on the secondary 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>axis.</span>"                                                                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>type</span> boolean                                                                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>group</span> (appearance active-theming)                                            
+<span class="l">&nbsp;365</span>  :<span class='chip-variable'>user-level</span> expert                                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>after-set</span> deferred-refresh)                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(<span class='chip-keyword'>defcustom</span> active-theming:tertiary-hash-all t                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  "<span class='chip-string'>Whether to return values across the whole axis when hashing on the tertiary  
+<span class="l">&nbsp;370</span>axis.</span>"                                                                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>type</span> boolean                                                                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>group</span> (appearance active-theming)                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>user-level</span> expert                                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>after-set</span> deferred-refresh)                                                  
+<span class="l">&nbsp;375</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(<span class='chip-keyword'>defcustom</span> active-theming:base-host                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (let* ((str (make-string-output-stream))                                      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>         (process (make-process str)))                                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    (call-process process nil "<span class='chip-string'>uname</span>" "<span class='chip-string'>-n</span>")                                     
+<span class="l">&nbsp;380</span>   (string2-trim (get-output-stream-string str)))                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  "<span class='chip-string'>The host name that will be given the base colour by the host method.</span>"        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>type</span> string                                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>group</span> (appearance active-theming)                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>user-level</span> expert                                                            
+<span class="l">&nbsp;385</span>  :<span class='chip-variable'>after-set</span> deferred-refresh)                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(<span class='chip-keyword'>defcustom</span> active-theming:base-position "<span class='chip-string'>+0+0</span>"                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  "<span class='chip-string'>The position that will be given the base colour by the position method.</span>"     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>type</span> string                                                                  
+<span class="l">&nbsp;390</span>  :<span class='chip-variable'>group</span> (appearance active-theming)                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>user-level</span> expert                                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>after-set</span> deferred-refresh)                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(<span class='chip-keyword'>defcustom</span> active-theming:base-title "<span class='chip-string'></span>"                                         
+<span class="l">&nbsp;395</span>  "<span class='chip-string'>The window title that will be given the base colour by the title method.</span>"    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>type</span> string                                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>group</span> (appearance active-theming)                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>user-level</span> expert                                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>after-set</span> deferred-refresh)                                                  
+<span class="l">&nbsp;400</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(<span class='chip-keyword'>defcustom</span> active-theming:base-workspace 0                                      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  "<span class='chip-string'>The workspace that will be given the base colour by the workspace method.</span>"   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>type</span> number                                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>group</span> (appearance active-theming)                                            
+<span class="l">&nbsp;405</span>  :<span class='chip-variable'>user-level</span> expert                                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>after-set</span> deferred-refresh)                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(<span class='chip-keyword'>defcustom</span> active-theming:ignored-titles-regexp                                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  "<span class='chip-string'>(^((This IS window )|(0\\$)))|(^$)</span>"                                          
+<span class="l">&nbsp;410</span>  "<span class='chip-string'>Regular expression used to recognise whether a window title change should    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>be ignored.  This is used to keep window colours constant when given transient  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>messages (from the program 'screen', for example).</span>"                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>type</span> string                                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>group</span> (appearance active-theming)                                            
+<span class="l">&nbsp;415</span>  :<span class='chip-variable'>user-level</span> expert                                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>after-set</span> deferred-refresh)                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(<span class='chip-keyword'>defcustom</span> active-theming:user-regexp                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  "<span class='chip-string'>(.*)@</span>"                                                                       
+<span class="l">&nbsp;420</span>  "<span class='chip-string'>Regular expression used to extract the current username from terminal        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>titles.</span>"                                                                        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>type</span> string                                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>group</span> (appearance active-theming)                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>user-level</span> expert                                                            
+<span class="l">&nbsp;425</span>  :<span class='chip-variable'>after-set</span> deferred-refresh)                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(<span class='chip-keyword'>defcustom</span> active-theming:host-regexp                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  "<span class='chip-string'>@(.*):</span>"                                                                      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  "<span class='chip-string'>Regular expression used to extract the current hostname from terminal        
+<span class="l">&nbsp;430</span>titles.</span>"                                                                        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>type</span> string                                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>group</span> (appearance active-theming)                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>user-level</span> expert                                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  :<span class='chip-variable'>after-set</span> deferred-refresh)                                                  
+<span class="l">&nbsp;435</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(<span class='chip-keyword'>define</span> (color-property active)                                                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (<span class='chip-keyword'>if</span> active                                                                    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>      'frame-active-color                                                       
+<span class="l">&nbsp;440</span>    'frame-inactive-color)                                                      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  )                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(<span class='chip-keyword'>define</span> (get-color window active)                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (window-get window (color-property active))                                   
+<span class="l">&nbsp;445</span>  )                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(<span class='chip-keyword'>define</span> (put-color window active color)                                         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (window-put window (color-property active) color)                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  )                                                                             
+<span class="l">&nbsp;450</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(<span class='chip-keyword'>define</span> (using-hsv)                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (= active-theming:model 'HSV)                                                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  )                                                                             
+<span class="l">&nbsp;455</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(<span class='chip-keyword'>define</span> (color-component axis color)                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (case axis                                                                    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    ((hue)        (nth 0 (color-to-hsv color)))                                 
+<span class="l">&nbsp;460</span>    ((saturation) (nth 1 (color-to-hsv color)))                                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    ((value)      (nth 2 (color-to-hsv color)))                                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    ((red)        (nth 0 (color-rgb color)))                                    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    ((green)      (nth 1 (color-rgb color)))                                    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    ((blue)       (nth 2 (color-rgb color)))                                    
+<span class="l">&nbsp;465</span>    )                                                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  )                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(<span class='chip-keyword'>define</span> (component axis far)                                                    
+<span class="l">&nbsp;470</span>  (color-component axis (<span class='chip-keyword'>if</span> far                                                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                             active-theming:far-color                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                           active-theming:base-color))                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  )                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;475</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(<span class='chip-keyword'>define</span> (calc-color w active methods axes conv)                                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (<span class='chip-keyword'>let</span> ((c1 ((nth 0 methods) w active (nth 0 axes)))                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>        (c2 ((nth 1 methods) w active (nth 1 axes)))                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>        (c3 ((nth 2 methods) w active (nth 2 axes))))                           
+<span class="l">&nbsp;480</span>    (conv c1 c2 c3)                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    )                                                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  )                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;485</span>(<span class='chip-keyword'>define</span> (calc-colors-given-axes w axes conv)                                    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (<span class='chip-keyword'>let</span> ((methods (mapcar method '(1 2 3))))                                     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    (list                                                                       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>     (calc-color w nil methods axes conv)                                       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>     (calc-color w t   methods axes conv)                                       
+<span class="l">&nbsp;490</span>     )                                                                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    )                                                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  )                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;495</span>(<span class='chip-keyword'>define</span> (calc-colors w)                                                         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (<span class='chip-keyword'>if</span> (using-hsv)                                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>      (calc-colors-given-axes w '(hue saturation value) hsv-to-color)           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    (calc-colors-given-axes w '(red green blue) get-color-rgb)                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    )                                                                           
+<span class="l">&nbsp;500</span>  )                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(<span class='chip-keyword'>define</span> (set-colors w)                                                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (let* ((colors (calc-colors w))                                               
+<span class="l">&nbsp;505</span>         (normal (car colors))                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>         (active (cadr colors)))                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    (put-color w nil normal)                                                    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    (put-color w t active)                                                      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    nil                                                                         
+<span class="l">&nbsp;510</span>    )                                                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  )                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(<span class='chip-keyword'>define</span> (determine-method m)                                                    
+<span class="l">&nbsp;515</span>  (<span class='chip-keyword'>let</span> ((f (eval m)))                                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    (<span class='chip-keyword'>cond</span>                                                                       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>     ((functionp f) f)                                                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>     ((symbolp f)                                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>      (<span class='chip-keyword'>let</span> ((f (eval (intern (concat "<span class='chip-string'>active-theming-method-</span>"                   
+<span class="l">&nbsp;520</span>                                     (prin1-to-string f))))))                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>        (<span class='chip-keyword'>if</span> (functionp f)                                                       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>            f                                                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>          (error (concat "<span class='chip-string'>Value given for </span>" (prin1-to-string m)                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                         "<span class='chip-string'> is not a function</span>")))))))                            
+<span class="l">&nbsp;525</span>  )                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(<span class='chip-keyword'>define</span> (method n)                                                              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (case n                                                                       
+<span class="l">&nbsp;530</span>    ((1) (determine-method 'active-theming:primary-method))                     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    ((2) (determine-method 'active-theming:secondary-method))                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    ((3) (determine-method 'active-theming:tertiary-method))                    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    )                                                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  )                                                                             
+<span class="l">&nbsp;535</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(<span class='chip-keyword'>define</span> (axis-range axis)                                                       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (case axis                                                                    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    ((hue)                360)                                                  
+<span class="l">&nbsp;540</span>    ((saturation value)     1)                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    ((red green blue)   65536)                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    )                                                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  )                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;545</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(<span class='chip-keyword'>define</span> (hashing-modulus axis)                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  "<span class='chip-string'>Return the appropriate hashing modulus for the given axis.  Hue is an        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>integer on [0, 360), and red, green, and blue are integers on [0, 65536).       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>These axes get a moduli matching their ranges.  Saturation and value are        
+<span class="l">&nbsp;550</span>floating point numbers on [0, 1], so we give these a modulus matching their     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>divisor of 65536.</span>"                                                              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (case axis                                                                    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    ((hue)                360)                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    ((saturation value) 65536)                                                  
+<span class="l">&nbsp;555</span>    ((red green blue)   65536)                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    )                                                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  )                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;560</span>(<span class='chip-keyword'>define</span> (hashing-divisor axis)                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  "<span class='chip-string'>Return the appropriate hashing divisor for the given axis.  Hue is an        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>integer on [0, 360), and red, green, and blue are integers on [0, 65536).       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>These axes get a divisor of 1, being integers, and hashing-modulus handles the  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>range issue.  Saturation and value are floating point numbers on [0, 1], so we  
+<span class="l">&nbsp;565</span>give these a divisor matching their modulus of 65536.  This gives a 16-bit      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>precision in the fractional part, which is fine.</span>"                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (case axis                                                                    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    ((hue)                  1)                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    ((saturation value) 65536)                                                  
+<span class="l">&nbsp;570</span>    ((red green blue)       1)                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    )                                                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  )                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;575</span>(<span class='chip-keyword'>define</span> (hashing-full axis)                                                     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (case axis                                                                    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    ((hue red)          active-theming:primary-hash-all)                        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    ((saturation green) active-theming:secondary-hash-all)                      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    ((value blue)       active-theming:tertiary-hash-all)                       
+<span class="l">&nbsp;580</span>    )                                                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  )                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(<span class='chip-keyword'>define</span> (component-by-hashing data-string zero-string axis)                     
+<span class="l">&nbsp;585</span>  "<span class='chip-string'>Determine the component on the given axis as a hash of the given             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>data-string.  The hash is computed such that the value would be equal to the    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>appropriate component of base-color if data-string were equal to the given      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>zero-string.</span>"                                                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;590</span>  (<span class='chip-keyword'>when</span> (null data-string)                                                      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    (error "<span class='chip-string'>data-string is null in component-by-hashing</span>"))                      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (<span class='chip-keyword'>when</span> (null zero-string)                                                      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    (error "<span class='chip-string'>zero-string is null in component-by-hashing</span>"))                      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;595</span>  (<span class='chip-keyword'>if</span> (hashing-full axis)                                                       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>      (component-by-hashing-full data-string zero-string axis)                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    (component-by-hashing-partial data-string zero-string axis)                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  )                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>)                                                                               
+<span class="l">&nbsp;600</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(<span class='chip-keyword'>define</span> (component-by-hashing-full data-string zero-string axis)                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  "<span class='chip-string'>The rep function string-hash is used for the actual hashing.  The hash is    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>offset so that if data-string equalled zero-string, the result would be the     
+<span class="l">&nbsp;605</span>appropriate component of base-color.  Finally, the result is taken modulo       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(hashing-modulus axis) and divided by (hashing-divisor axis).  This last        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>operation brings the hash result (a 32-bit integer value) into the range and    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>precision required for the given axis.</span>"                                         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;610</span>  (let* ((m (hashing-modulus axis))                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>         (d (hashing-divisor axis))                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>         (hash-offset (inexact-&gt;exact                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                       (round                                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                        (* (- (component axis nil)                              
+<span class="l">&nbsp;615</span>                              (string-hash zero-string))                        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                           d))))                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>         (u (mod (+ (string-hash data-string) hash-offset) m))                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>         (v (<span class='chip-keyword'>if</span> (&lt; u 0)                                                         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                (+ u m)                                                         
+<span class="l">&nbsp;620</span>              u))                                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>         )                                                                      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    (<span class='chip-keyword'>if</span> (= d 1)                                                                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>        (inexact-&gt;exact (round v))                                              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>      (/ v d)                                                                   
+<span class="l">&nbsp;625</span>      )                                                                         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    )                                                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  )                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;630</span>(<span class='chip-keyword'>define</span> (component-by-hashing-partial data-string zero-string axis)             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  "<span class='chip-string'>Unlike component-by-hashing-full, our result must map only onto the axis     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>portion defined by the difference between far-color and base-color.  To achieve 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>this, the hash is first offset so that if data-string equalled zero-string, the 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>result would be the 0.  The result is taken modulo (hashing-modulus axis) *     
+<span class="l">&nbsp;635</span>range-in-use / (axis-range axis) and then divided by (hashing-divisor axis).    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>Finally, the base-color component is added to offset the result appropriately.</span>" 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (let* ((m (hashing-modulus axis))                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>         (d (hashing-divisor axis))                                             
+<span class="l">&nbsp;640</span>         (b (component axis nil))                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>         (f (component axis t))                                                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>         (range-in-use (- f b))                                                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>         (range-total (axis-range axis))                                        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>         (modulus (inexact-&gt;exact                                               
+<span class="l">&nbsp;645</span>                   (round                                                       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                    (/ (* m range-in-use) range-total))))                       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>         (hash-offset (inexact-&gt;exact                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                       (round                                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                        (* (- 0                                                 
+<span class="l">&nbsp;650</span>                              (string-hash zero-string))                        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                           d))))                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>         (u (mod (+ (string-hash data-string) hash-offset) modulus))            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>         (v (<span class='chip-keyword'>if</span> (&lt; u 0)                                                         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                (+ u modulus)                                                   
+<span class="l">&nbsp;655</span>              u))                                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>         (w (<span class='chip-keyword'>if</span> (= d 1)                                                         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                (inexact-&gt;exact (round v))                                      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>              (/ v d)))                                                         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>         )                                                                      
+<span class="l">&nbsp;660</span>    (+ w b)                                                                     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    )                                                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  )                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;665</span>(<span class='chip-keyword'>define</span> (active-theming-refresh w)                                              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (set-colors w)                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (rebuild-frame w)                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  )                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;670</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(<span class='chip-keyword'>define</span> (active-theming-refresh-all)                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (mapc active-theming-refresh (managed-windows))                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  )                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;675</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(<span class='chip-keyword'>define</span> (active-theming-current-value w active axis)                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  "<span class='chip-string'>Return the current value of the component appropriate for the given          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>parameters.</span>"                                                                    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (<span class='chip-keyword'>let</span> ((color (or (get-color w active)                                         
+<span class="l">&nbsp;680</span>                   active-theming:base-color)))                                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    (color-component axis color)                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    )                                                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  )                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;685</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(<span class='chip-keyword'>define</span> (window-property-changed w an)                                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (<span class='chip-keyword'>when</span> (or (eq an 'WM_NAME) (eq an 'workspaces))                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    (active-theming-refresh w))                                                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  )                                                                             
+<span class="l">&nbsp;690</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(<span class='chip-keyword'>define</span> (active-theming-initialise)                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (add-hook 'property-notify-hook window-property-changed)                      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (add-hook 'add-window-hook set-colors)                                        
+<span class="l">&nbsp;695</span>  (add-hook 'add-to-workspace-hook active-theming-refresh)                      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (add-hook 'window-moved-hook active-theming-refresh)                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (add-hook 'workspace-state-change-hook active-theming-refresh-all)            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (active-theming-refresh-all)                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  )                                                                             
+<span class="l">&nbsp;700</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(<span class='chip-keyword'>define</span> (active-theming-deinitialise)                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (remove-hook 'property-notify-hook window-property-changed)                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (remove-hook 'add-window-hook set-colors)                                     
+<span class="l">&nbsp;705</span>  (remove-hook 'add-to-workspace-hook active-theming-refresh)                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (remove-hook 'window-moved-hook active-theming-refresh)                       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (remove-hook 'workspace-state-change-hook active-theming-refresh-all)         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  nil                                                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  )                                                                             
+<span class="l">&nbsp;710</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-comment'>;;;; Focus Method                                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(<span class='chip-keyword'>define</span> (active-theming-method-focus w active axis)                             
+<span class="l">&nbsp;715</span>  (declare (unused w))                                                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (component axis active)                                                       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  )                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;720</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-comment'>;;;; Host Method                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(<span class='chip-keyword'>define</span> (active-theming-method-host w active axis)                              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (<span class='chip-keyword'>let</span> ((name (window-name w)))                                                 
+<span class="l">&nbsp;725</span>    (<span class='chip-keyword'>if</span> (string-match active-theming:ignored-titles-regexp name)                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>        (active-theming-current-value w active axis)                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>      (<span class='chip-keyword'>let</span> ((host                                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>             (<span class='chip-keyword'>if</span> (string-match active-theming:host-regexp name)                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                 (substring name (match-start 1) (match-end 1))                 
+<span class="l">&nbsp;730</span>               (<span class='chip-keyword'>let</span> ((client (nth 2 (get-x-property w 'WM_CLIENT_MACHINE))))    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                 (or client active-theming:base-host nil)))))                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>        (component-by-hashing host active-theming:base-host axis)               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>        )                                                                       
+<span class="l">&nbsp;735</span>      )                                                                         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    )                                                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  )                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-comment'>;;;; Group Method                                                               
+<span class="l">&nbsp;740</span></span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(<span class='chip-keyword'>define</span> (active-theming-method-group w active axis)                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (declare (unused active))                                                     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (component-by-hashing (prin1-to-string (window-group-id w)) "<span class='chip-string'>0</span>" axis)         
+<span class="l">&nbsp;745</span>  )                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-comment'>;;;; Root Method                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span>                                                                                
+<span class="l">&nbsp;750</span>(<span class='chip-keyword'>define</span> (active-theming-method-root w active axis)                              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (<span class='chip-keyword'>let</span> ((name (window-name w)))                                                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    (<span class='chip-keyword'>if</span> (string-match active-theming:ignored-titles-regexp name)                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>        (active-theming-current-value w active axis)                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;755</span>      (component axis                                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                 (<span class='chip-keyword'>when</span> (string-match active-theming:user-regexp name)           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                   (string-equal "<span class='chip-string'>root</span>"                                         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                 (substring name                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                            (match-start 1)                     
+<span class="l">&nbsp;760</span>                                            (match-end 1))))))                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    )                                                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  )                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;765</span><span class='chip-comment'>;;;; Position Method                                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(<span class='chip-keyword'>define</span> (pos-&gt;string x)                                                         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (<span class='chip-keyword'>let</span> ((xs (number-&gt;string x)))                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    (<span class='chip-keyword'>if</span> (&lt;= x 0)                                                                
+<span class="l">&nbsp;770</span>        (concat "<span class='chip-string'>+</span>" xs)                                                         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>      xs))                                                                      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  )                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;775</span>(<span class='chip-keyword'>define</span> (active-theming-method-position w active axis)                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (declare (unused active))                                                     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (<span class='chip-keyword'>let</span> ((position (window-position w)))                                         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    (component-by-hashing (concat (pos-&gt;string (car position))                  
+<span class="l">&nbsp;780</span>                                  (pos-&gt;string (cdr position)))                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                          active-theming:base-position                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                          axis)                                                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    )                                                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  )                                                                             
+<span class="l">&nbsp;785</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-comment'>;;;; Sticky Method                                                              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(<span class='chip-keyword'>define</span> (active-theming-method-sticky w active axis)                            
+<span class="l">&nbsp;790</span>  (declare (unused active))                                                     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (component axis (window-get w 'sticky))                                       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  )                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;795</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-comment'>;;;; Title Method                                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(<span class='chip-keyword'>define</span> (active-theming-method-title w active axis)                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (<span class='chip-keyword'>let</span> ((name (window-name w)))                                                 
+<span class="l">&nbsp;800</span>    (<span class='chip-keyword'>if</span> (string-match active-theming:ignored-titles-regexp name)                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>        (active-theming-current-value w active axis)                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>      (component-by-hashing name active-theming:base-title axis)                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>      )                                                                         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    )                                                                           
+<span class="l">&nbsp;805</span>  )                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-comment'>;;;; Workspace Method                                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span>                                                                                
+<span class="l">&nbsp;810</span>(<span class='chip-keyword'>define</span> (workspace-name ws)                                                     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (let* ((limits (workspace-limits))                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>         (first-workspace (or (car limits) 0))                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>         (last-workspace (or (cdr limits) 0)))                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    (<span class='chip-keyword'>if</span> (or (null ws)                                                           
+<span class="l">&nbsp;815</span>            (&gt; ws last-workspace)                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>            (&lt; ws first-workspace))                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>        "<span class='chip-string'>Invalid Workspace</span>"                                                     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>      (or                                                                       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>       (nth (- ws first-workspace) workspace-names)                             
+<span class="l">&nbsp;820</span>       (format nil "<span class='chip-string'>Workspace %d</span>" ws))                                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>      )                                                                         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    )                                                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  )                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;825</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(<span class='chip-keyword'>define</span> (string-reverse s)                                                      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (<span class='chip-keyword'>let</span> loop ((result "<span class='chip-string'></span>")                                                        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>             (pos 0))                                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>       (<span class='chip-keyword'>if</span> (&gt;= pos (length s))                                                  
+<span class="l">&nbsp;830</span>           result                                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>         (loop (concat (elt s pos) result) (1+ pos)))                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>       )                                                                        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  )                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;835</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(<span class='chip-keyword'>define</span> (reverse-workspace-name ws)                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (string-reverse (workspace-name ws))                                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  )                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;840</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>(<span class='chip-keyword'>define</span> (active-theming-method-workspace w active axis)                         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (declare (unused active))                                                     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  (<span class='chip-keyword'>let</span> ((workspace (car (window-workspaces w))))                                
+<span class="l">&nbsp;845</span>    (component-by-hashing (reverse-workspace-name                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                           (or workspace active-theming:base-workspace))        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                          (reverse-workspace-name                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                           active-theming:base-workspace)                       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                          axis)                                                 
+<span class="l">&nbsp;850</span>    )                                                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  )                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>)                                                                               
+<span class="l">&nbsp;855</span></pre>
+<p style="text-align: center">&middot; active-theming.jl ends &middot;</p>
+<p class="chip-bottomlink"><span id='chip-bottomlink'>
+To load this file without formatting, visit active-theming.jl.  This is a spam-protection
+measure; sorry for the inconvenience.
+</span>
+</p>
+<p class="chip-attribution"><a href='http://www.ewanmellor.org.uk/chip.html'>Generated by CHIP: Code Highlighting in PHP, version X.Y.Z.</a></p>
+</body>
+</html>

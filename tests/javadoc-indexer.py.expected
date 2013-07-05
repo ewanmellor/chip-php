@@ -1,0 +1,418 @@
+<!DOCTYPE html PUBLIC
+               "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>javadoc-indexer.py</title>
+<meta http-equiv='Page-Enter'
+           content='revealTrans(duration="1",transition="20")' />
+<link rel="stylesheet" href="chip.css" title="CHIP"
+      type="text/css" />
+<!--[if IE]>
+<link href="chip-ie.css" rel="stylesheet" type="text/css"
+      media="screen">
+<![endif]-->
+<script type="text/javascript" src="rot13.js"></script>
+<script type="text/javascript" src="chip.js"></script>
+<script type="text/javascript">
+// <!--
+
+chipFilePath = 'javadoc-indexer.py';
+chipPlainPageAnchorText = '(Load javadoc-indexer.py without formatting)';
+chipEmailLabelPrefix = 'chip-rotemailaddress';
+chipTopLinkLabel = 'chip-toplink';
+chipBottomLinkLabel = 'chip-bottomlink';
+
+  function chipOnload()
+  {
+
+    chipFixRotEmails();
+    chipFixLinks();
+  }
+
+// -->
+</script>
+</head>
+<body onload="javascript:chipOnload()">
+<p style="text-align: right"><span id='chip-toplink'>
+To load this file without formatting, visit javadoc-indexer.py.  This is a spam-protection
+measure; sorry for the inconvenience.
+</span>
+</p>
+<p style="text-align: center">&middot; javadoc-indexer.py &middot;</p>
+<pre>
+<span class="l">&nbsp;&nbsp;&nbsp;1</span><span class='chip-comment'>#!/usr/bin/env python                                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-comment'>#                                                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'># Javadoc and Doxygen indexer.  Version 1.2.                                    
+<span class="l">&nbsp;&nbsp;&nbsp;5</span></span><span class='chip-comment'>#                                                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'># Copyright (c) 2004-2005 Ewan Mellor &lt;<span id='chip-rotemailaddress0'>fnjsvfu at rjnazryybe.bet.hx</span>&gt;.  All rights
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'># reserved.                                                                     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'>#                                                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'># Permission is hereby granted, free of charge, to any person obtaining a copy  
+<span class="l">&nbsp;&nbsp;10</span></span><span class='chip-comment'># of this software and associated documentation files (the "Software"), to      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'># deal in the Software without restriction, including without limitation the    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'># rights to use, copy, modify, merge, publish, distribute, sublicense, and/or   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'># sell copies of the Software, and to permit persons to whom the Software is    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'># furnished to do so, subject to the following conditions:                      
+<span class="l">&nbsp;&nbsp;15</span></span><span class='chip-comment'>#                                                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'>#   The above copyright notice and this permission notice shall be included in  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'>#   all copies or substantial portions of the Software.                         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'>#                                                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'>#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR  
+<span class="l">&nbsp;&nbsp;20</span></span><span class='chip-comment'>#   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'>#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'>#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'>#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'>#   FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER         
+<span class="l">&nbsp;&nbsp;25</span></span><span class='chip-comment'>#   DEALINGS IN THE SOFTWARE.                                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-comment'>#                                                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'># Call this script with javadoc-indexer.py --help for usage.                    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'>#                                                                               
+<span class="l">&nbsp;&nbsp;30</span></span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-comment'>#                                                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'># In order for this script to be useful, you need something to access the       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'># generated index.  One option is to use the lookup and javadoc Sawfish         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'># modules available at                                                          
+<span class="l">&nbsp;&nbsp;35</span></span><span class='chip-comment'>#                                                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'># <span class='chip-url'><a href='http://www.ewanmellor.org.uk/sawfish.html'>http://www.ewanmellor.org.uk/sawfish.html</a></span>                                     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'>#                                                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'># This script itself should be available there too.                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'>#                                                                               
+<span class="l">&nbsp;&nbsp;40</span></span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-comment'>#                                                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'># This script generates lines of pairs of double-quoted strings thus:           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'>#                                                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'># "lang.String" "/.../api/java/lang/String.html"                                
+<span class="l">&nbsp;&nbsp;45</span></span><span class='chip-comment'>#                                                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'># The first string gives the key, and the second gives the filename at which    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'># the documentation corresponding to that key will be found.  All partial       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'># suffixes of the key will be generated, so in this case there would be a line  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'># for "String", "lang.String", and "java.lang.String".                          
+<span class="l">&nbsp;&nbsp;50</span></span><span class='chip-comment'>#                                                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'># Entries are generated for packages, too, referring to the package summary     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'># page.  For example, the following entry may be generated:                     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'>#                                                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'># "lang" "/.../api/java/lang/package-summary.html"                              
+<span class="l">&nbsp;&nbsp;55</span></span><span class='chip-comment'>#                                                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-comment'>#                                                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'># If given the -r option, this script will follow the reindexing by reloading   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'># the javadoc module of all running Sawfish instances on this machine.  This    
+<span class="l">&nbsp;&nbsp;60</span></span><span class='chip-comment'># will ensure that those Sawfish instances use this new index immediately.      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'>#                                                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-comment'>#                                                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'># Privileged prefixes.  Fully qualified names beginning with a prefix in this   
+<span class="l">&nbsp;&nbsp;65</span></span><span class='chip-comment'># list will have all keys placed towards the front of the output, and thus      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'># unqualified names used as keys will win in the case of conflicts with other   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'># unqualified names.                                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'>#                                                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'># This list is ordered from the highest priority to the lowest, and anything    
+<span class="l">&nbsp;&nbsp;70</span></span><span class='chip-comment'># not matching these prefixes will be considered lowest of all.                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'>#                                                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'># Prefixes in this list are most likely to be package names, but could equally  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'># be fully qualified class names too.                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'>#                                                                               
+<span class="l">&nbsp;&nbsp;75</span></span><span class='chip-comment'># For example, with java.util in this list, and java.awt either later in the    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'># list or not in the list at all, java.util.List will be considered a better    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'># match than java.awt.List for the key "List".                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'>#                                                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'># Note that the entry "java.lang." will match the java.lang package itself as   
+<span class="l">&nbsp;&nbsp;80</span></span><span class='chip-comment'># well as any of its contents.                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'>#                                                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'># A prefix may optionally be composed of two parts, separated by a minus sign.  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'># This form gives an entry that is matched if the first part is matched, and    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'># the second part is not matched anywhere in the name.  This is useful for      
+<span class="l">&nbsp;&nbsp;85</span></span><span class='chip-comment'># projects with separate test directories.  For example, "com.example.-test"    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'># matches com.example.server, but neither com.example.test nor                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'># com.example.server.test.  The best way to use this is to have the two         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'># entries "com.example.-test" and "com.example.".  This will therefore match    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'># classes in the main sourcebase first, or in the test suite if the name isn't  
+<span class="l">&nbsp;&nbsp;90</span></span><span class='chip-comment'># found there.                                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-comment'>#privPrefixes = [ "com.example.-test", "com.example.",                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'>#                 "org.apache.log4j", "java.util.", "java.awt.", "java.lang.",  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'>#                 "java." ]                                                     
+<span class="l">&nbsp;&nbsp;95</span></span>privPrefixes = [ "<span class='chip-string'>ra.-test</span>", "<span class='chip-string'>ra.</span>", "<span class='chip-string'>org.apache.log4j</span>", "<span class='chip-string'>java.util.</span>",           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                 "<span class='chip-string'>java.awt.</span>", "<span class='chip-string'>java.lang.</span>",                                     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                 "<span class='chip-string'>javax.sql</span>", "<span class='chip-string'>java.sql</span>", "<span class='chip-string'>java.</span>"]                              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;100</span><span class='chip-comment'># -- No user serviceable parts below this line --                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-keyword'>import</span> fileinput                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-keyword'>import</span> getopt                                                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-keyword'>import</span> os                                                                       
+<span class="l">&nbsp;105</span><span class='chip-keyword'>import</span> re                                                                       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-keyword'>import</span> string                                                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-keyword'>import</span> sys                                                                      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-comment'>#                                                                               
+<span class="l">&nbsp;110</span></span><span class='chip-comment'># A dictionary of dictionaries.  The outer dictionary is keyed on either a      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'># value in privPrefixes or othersString, and the inner dictionary maps the      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'># string keys to paths.                                                         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'>#                                                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span>mappings = {}                                                                   
+<span class="l">&nbsp;115</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>othersString = "<span class='chip-string'>&lt;Others&gt;</span>"                                                       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-comment'># For Java, throw away class-use, packages, package-use, package-frame, and     
+<span class="l">&nbsp;120</span></span><span class='chip-comment'># package-tree.  Keep package-summary as the destination for package names.     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class='chip-comment'># For Doxygen, throw away *-members.html files.                                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span>filesToIgnoreRE = re.compile(                                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    r"<span class='chip-string'>(class-use|package(s|-(use|frame|tree))|-members\.html$)</span>")                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;125</span>Javadoc = 1                                                                     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>Doxygen = 2                                                                     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-comment'># ## Processing ##                                                              
+<span class="l">&nbsp;130</span></span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-keyword'>def</span> processDir(dir):                                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    "<span class='chip-string'>Process the documentation tree rooted at the given directory.</span>"             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    <span class='chip-keyword'>if</span> os.access(dir + "<span class='chip-string'>/allclasses-frame.html</span>", os.F_OK):                      
+<span class="l">&nbsp;135</span>        type = Javadoc                                                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    <span class='chip-keyword'>elif</span> os.access(dir + "<span class='chip-string'>/all-packages.html</span>", os.F_OK):                        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>        type = Javadoc <span class='chip-comment'># Gjdoc HtmlDoclet, actually.                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span>    <span class='chip-keyword'>elif</span> os.access(dir + "<span class='chip-string'>/doxygen.png</span>", os.F_OK):                              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>        type = Doxygen                                                          
+<span class="l">&nbsp;140</span>    <span class='chip-keyword'>else</span>:                                                                       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>        <span class='chip-keyword'>print</span> &gt;&gt;sys.stderr, "<span class='chip-string'>The directory</span>", dir, "<span class='chip-string'>does not contain the file allclasses-frame.html, nor doxygen.png; ignoring it.</span>"
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>        <span class='chip-keyword'>return</span>                                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    <span class='chip-keyword'>if</span> type == Javadoc:                                                         
+<span class="l">&nbsp;145</span>        pathList = os.popen("<span class='chip-string'>find </span>" + dir + "<span class='chip-string'> -name \*.html</span>")                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    <span class='chip-keyword'>else</span>:                                                                       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>        pathList = os.popen("<span class='chip-string'>find </span>" + dir +                                     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                            "<span class='chip-string'> -name class\*.html -o -name namespace\*.html</span>")    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;150</span>    <span class='chip-keyword'>for</span> path <span class='chip-keyword'>in</span> pathList:                                                       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>        process(dir, path, type)                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    pathList.close()                                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;155</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-keyword'>def</span> process(dir, path, type):                                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    "<span class='chip-string'>Process the given path, where dir is the root of the documentation tree.</span>"  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    <span class='chip-keyword'>if</span> filesToIgnoreRE.search(path):                                            
+<span class="l">&nbsp;160</span>        <span class='chip-keyword'>return</span>                                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    <span class='chip-comment'># path should be a fully qualified path to a Javadoc / Doxygen file.        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span>    <span class='chip-comment'># name is the fully qualified class name associated, with namespaces        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span>    <span class='chip-comment'># separated by full stops, even when processing C++ classes.                
+<span class="l">&nbsp;165</span></span>    path = path.strip()                                                         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    name = path.replace(dir, "<span class='chip-string'></span>").replace("<span class='chip-string'>/</span>", "<span class='chip-string'>.</span>").replace("<span class='chip-string'>.html</span>", "<span class='chip-string'></span>")         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    <span class='chip-keyword'>if</span> type == Javadoc:                                                         
+<span class="l">&nbsp;170</span>        name = name.replace("<span class='chip-string'>package-summary</span>", "<span class='chip-string'></span>")                              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    <span class='chip-keyword'>else</span>:                                                                       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>        name = name.replace("<span class='chip-string'>_1_1</span>", "<span class='chip-string'>.</span>").replace("<span class='chip-string'>class</span>", "<span class='chip-string'></span>").replace("<span class='chip-string'>namespace</span>", "<span class='chip-string'></span>")
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;175</span>    <span class='chip-comment'># Generate keys as all the suffixes in name, and add those keys and values  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span>    <span class='chip-comment'># to the mappings dictionary.                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    parts = name.split("<span class='chip-string'>.</span>")                                                     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;180</span>    n = len(parts)                                                              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    key = parts[n - 1]                                                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    <span class='chip-keyword'>if</span> key == "<span class='chip-string'></span>":                                                               
+<span class="l">&nbsp;185</span>        n -= 1                                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>        key = parts[n - 1]                                                      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    add(name, key, path)                                                        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;190</span>    <span class='chip-keyword'>for</span> i <span class='chip-keyword'>in</span> range(n - 2, -1, -1):                                              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>        part = parts[i].strip()                                                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>        key = part + "<span class='chip-string'>.</span>" + key                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>        add(name, key, path)                                                    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;195</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-keyword'>def</span> add(name, key, value):                                                      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    """<span class='chip-string'>Add the given key and value to the mappings dictionary.                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    Select the subdictionary depending upon whether the given name matches one  
+<span class="l">&nbsp;200</span>    of the privileged prefixes.                                                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    </span>"""                                                                         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    <span class='chip-keyword'>global</span> othersString                                                         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    <span class='chip-keyword'>global</span> privPrefixes                                                         
+<span class="l">&nbsp;205</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    <span class='chip-keyword'>for</span> prefix <span class='chip-keyword'>in</span> privPrefixes:                                                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>        parts = prefix.split("<span class='chip-string'>-</span>")                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>        <span class='chip-keyword'>if</span> len(parts) == 1:                                                     
+<span class="l">&nbsp;210</span>            <span class='chip-keyword'>if</span> name.find(prefix) == 0:                                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                addMapping(prefix, key, value)                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                <span class='chip-keyword'>return</span>                                                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>        <span class='chip-keyword'>else</span>:                                                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>            <span class='chip-keyword'>if</span> name.find(parts[0]) == 0 <span class='chip-keyword'>and</span> name.find(parts[1]) == -1:          
+<span class="l">&nbsp;215</span>                addMapping(prefix, key, value)                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                <span class='chip-keyword'>return</span>                                                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    addMapping(othersString, key, value)                                        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;220</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-keyword'>def</span> addMapping(subdict, key, value):                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    "<span class='chip-string'>Add the given key and value to the named subdictionary of mappings.</span>"       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    <span class='chip-keyword'>global</span> mappings                                                             
+<span class="l">&nbsp;225</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    <span class='chip-keyword'>if</span> <span class='chip-keyword'>not</span> mappings.has_key(subdict):                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>        mappings[subdict] = {}                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    dict = mappings[subdict]                                                    
+<span class="l">&nbsp;230</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    dict[key] = value                                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-comment'># ## Output ##                                                                  
+<span class="l">&nbsp;235</span></span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-keyword'>def</span> outputAll(outputFile):                                                      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    "<span class='chip-string'>Output everything in mappings to the given file.</span>"                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    file = open(outputFile, '<span class='chip-string'>w</span>')                                                
+<span class="l">&nbsp;240</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    <span class='chip-keyword'>for</span> prefix <span class='chip-keyword'>in</span> privPrefixes:                                                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>        outputSubdict(prefix, file)                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    outputSubdict(othersString, file)                                           
+<span class="l">&nbsp;245</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    file.close()                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-keyword'>def</span> outputSubdict(subdict, file):                                               
+<span class="l">&nbsp;250</span>    "<span class='chip-string'>Output everything in the named subdictionary of mappings.</span>"                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    <span class='chip-keyword'>if</span> <span class='chip-keyword'>not</span> mappings.has_key(subdict):                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>        <span class='chip-keyword'>return</span>                                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;255</span>    map = mappings[subdict]                                                     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    <span class='chip-keyword'>for</span> key <span class='chip-keyword'>in</span> map.keys():                                                      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>        output(key, map[key], file)                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;260</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-keyword'>def</span> output(key, value, file):                                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    "<span class='chip-string'>Output the given key-value pair.</span>"                                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    <span class='chip-keyword'>print</span> &gt;&gt;file, '<span class='chip-string'>"</span>' + key + '<span class='chip-string'>" "</span>' + value + '<span class='chip-string'>"</span>'                               
+<span class="l">&nbsp;265</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-comment'># ## Reloading Javadoc Module ##                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-keyword'>def</span> reloadJavadocModule(display):                                               
+<span class="l">&nbsp;270</span>    """<span class='chip-string'>Issue a command to the sawfish instance running on the given display to  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    reload the javadoc module.</span>"""                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    os.system("<span class='chip-string'>echo ',reload javadoc' | sawfish-client -q --display </span>" +         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>              display + "<span class='chip-string'> - &gt;/dev/null 2&gt;/dev/null</span>")                            
+<span class="l">&nbsp;275</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-keyword'>def</span> reloadJavadocModuleEverywhere():                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    """<span class='chip-string'>Reload the javadoc module on every sawfish instance running on this      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    machine.</span>"""                                                                 
+<span class="l">&nbsp;280</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    pids = readClose(os.popen("<span class='chip-string'>pidof sawfish</span>"))                                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    <span class='chip-keyword'>for</span> pid <span class='chip-keyword'>in</span> pids.split("<span class='chip-string'> </span>"):                                                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>        p = pid.strip()                                                         
+<span class="l">&nbsp;285</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>        <span class='chip-keyword'>if</span> p != "<span class='chip-string'></span>":                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>            env = readClose(os.popen("<span class='chip-string'>cat /proc/</span>" + p + "<span class='chip-string'>/environ</span>"))            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>            bits = env.split("<span class='chip-string'>\000</span>")                                            
+<span class="l">&nbsp;290</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>            <span class='chip-keyword'>for</span> bit <span class='chip-keyword'>in</span> bits:                                                    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                <span class='chip-keyword'>if</span> bit.find("<span class='chip-string'>DISPLAY</span>") == 0:                                    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                    reloadJavadocModule(bit.split("<span class='chip-string'>=</span>")[1])                      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                    <span class='chip-keyword'>break</span>                                                       
+<span class="l">&nbsp;295</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-keyword'>def</span> readClose(file):                                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    "<span class='chip-string'>Read everything from the given file, and close it.</span>"                        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;300</span>    <span class='chip-keyword'>def</span> concat(x, y):                                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>        <span class='chip-keyword'>return</span> x + y                                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    result = reduce(concat, file.readlines(), "<span class='chip-string'></span>")                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    file.close()                                                                
+<span class="l">&nbsp;305</span>    <span class='chip-keyword'>return</span> result                                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-comment'># ## Entry point ##                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span>                                                                                
+<span class="l">&nbsp;310</span><span class='chip-keyword'>def</span> main():                                                                     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    reload = 0                                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    outputFilename = None                                                       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    <span class='chip-keyword'>try</span>:                                                                        
+<span class="l">&nbsp;315</span>        opts, args = getopt.getopt(sys.argv[1:], "<span class='chip-string'>hro:</span>",                        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                   ["<span class='chip-string'>help</span>", "<span class='chip-string'>reload</span>", "<span class='chip-string'>output=</span>"])               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    <span class='chip-keyword'>except</span> getopt.GetoptError:                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>        usage()                                                                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>        sys.exit(2)                                                             
+<span class="l">&nbsp;320</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    <span class='chip-keyword'>for</span> o, a <span class='chip-keyword'>in</span> opts:                                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>        <span class='chip-keyword'>if</span> o <span class='chip-keyword'>in</span> ("<span class='chip-string'>-h</span>", "<span class='chip-string'>--help</span>"):                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>            usage()                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>            sys.exit(0)                                                         
+<span class="l">&nbsp;325</span>        <span class='chip-keyword'>elif</span> o <span class='chip-keyword'>in</span> ("<span class='chip-string'>-r</span>", "<span class='chip-string'>--reload</span>"):                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>            reload = 1                                                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>        <span class='chip-keyword'>elif</span> o <span class='chip-keyword'>in</span> ("<span class='chip-string'>-o</span>", "<span class='chip-string'>--output</span>"):                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>            outputFilename = a                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;330</span>    <span class='chip-keyword'>if</span> len(args) &lt; 1 <span class='chip-keyword'>or</span> outputFilename == None:                                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>        usage()                                                                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>        sys.exit(2)                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    <span class='chip-keyword'>for</span> dir <span class='chip-keyword'>in</span> args:                                                            
+<span class="l">&nbsp;335</span>        processDir(dir)                                                         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    outputAll(outputFilename)                                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    <span class='chip-keyword'>if</span> reload:                                                                  
+<span class="l">&nbsp;340</span>        reloadJavadocModuleEverywhere()                                         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-keyword'>def</span> usage():                                                                    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    <span class='chip-keyword'>print</span> """<span class='chip-string'>                                                                   
+<span class="l">&nbsp;345</span>Usage:                                                                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>javadoc-indexer.py [-h/--help] [-r/--reload] -o &lt;file&gt;/--output=&lt;file&gt;          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                   &lt;dir&gt;+                                                       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>where                                                                           
+<span class="l">&nbsp;350</span>      --help          instructs this script to display this message and exit;   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>      --reload        indicates that all running sawfish instances should have  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                        the javadoc module reloaded after reindexing;           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>      --output=&lt;file&gt; gives the file into which this script should place its    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                        output;                                                 
+<span class="l">&nbsp;355</span>      &lt;dir&gt;           is a fully qualified directory at the root of a           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                        Javadoc- or Doxygen-generated documentation tree.       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                        Javadoc directories contain the file                    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                        allclasses-frame.html, and are often called "api".      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                        Doxygen directories contain the file doxygen.png,       
+<span class="l">&nbsp;360</span>                        and are often called "html".                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span>"""                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-keyword'>if</span> __name__ == "<span class='chip-string'>__main__</span>":                                                      
+<span class="l">&nbsp;365</span>    main()                                                                      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></pre>
+<p style="text-align: center">&middot; javadoc-indexer.py ends &middot;</p>
+<p class="chip-bottomlink"><span id='chip-bottomlink'>
+To load this file without formatting, visit javadoc-indexer.py.  This is a spam-protection
+measure; sorry for the inconvenience.
+</span>
+</p>
+<p class="chip-attribution"><a href='http://www.ewanmellor.org.uk/chip.html'>Generated by CHIP: Code Highlighting in PHP, version X.Y.Z.</a></p>
+</body>
+</html>

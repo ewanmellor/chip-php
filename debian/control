@@ -1,0 +1,13 @@
+Package: chip
+Version: 1.0
+Section: web
+Priority: optional
+Architecture: all
+Essential: no
+Depends: php4 | php4-cgi
+Suggests: apache
+Maintainer: Ewan Mellor <chip@ewanmellor.org.uk>
+Description: CHIP: Code Highlighting in PHP
+  CHIP is a simple source code highlighter designed to be used on webservers.
+  It takes C, C++, Java, Lisp, Python, PHP, HTML, or JavaScript code, and
+  outputs an XHTML version of that code, with appropriate highlighting.

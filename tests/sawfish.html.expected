@@ -1,0 +1,348 @@
+<!DOCTYPE html PUBLIC
+               "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>sawfish.html</title>
+<meta http-equiv='Page-Enter'
+           content='revealTrans(duration="1",transition="20")' />
+<link rel="stylesheet" href="chip.css" title="CHIP"
+      type="text/css" />
+<!--[if IE]>
+<link href="chip-ie.css" rel="stylesheet" type="text/css"
+      media="screen">
+<![endif]-->
+<script type="text/javascript" src="rot13.js"></script>
+<script type="text/javascript" src="chip.js"></script>
+<script type="text/javascript">
+// <!--
+
+chipFilePath = 'sawfish.html';
+chipPlainPageAnchorText = '(Load sawfish.html without formatting)';
+chipEmailLabelPrefix = 'chip-rotemailaddress';
+chipTopLinkLabel = 'chip-toplink';
+chipBottomLinkLabel = 'chip-bottomlink';
+
+  function chipOnload()
+  {
+
+    chipFixRotEmails();
+    chipFixLinks();
+  }
+
+// -->
+</script>
+</head>
+<body onload="javascript:chipOnload()">
+<p style="text-align: right"><span id='chip-toplink'>
+To load this file without formatting, visit sawfish.html.  This is a spam-protection
+measure; sorry for the inconvenience.
+</span>
+</p>
+<p style="text-align: center">&middot; sawfish.html &middot;</p>
+<pre>
+<span class="l">&nbsp;&nbsp;&nbsp;1</span><span class='chip-variable'>&lt;!DOCTYPE html PUBLIC                                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>               "<span class='chip-string'>-//W3C//DTD XHTML 1.0 Strict//EN</span>"                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>               "<span class='chip-string'>http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd</span>"&gt;</span>             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-variable'>&lt;html <span class='chip-keyword'>xmlns</span>="<span class='chip-string'>http://www.w3.org/1999/xhtml</span>" <span class='chip-keyword'>xml:lang</span>="<span class='chip-string'>en</span>" <span class='chip-keyword'>lang</span>="<span class='chip-string'>en</span>"&gt;</span>             
+<span class="l">&nbsp;&nbsp;&nbsp;5</span><span class='chip-variable'>&lt;head&gt;</span>                                                                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-variable'>&lt;title&gt;</span>Sawfish<span class='chip-variable'>&lt;/title&gt;</span>                                                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-variable'>&lt;meta <span class='chip-keyword'>http-equiv</span>="<span class='chip-string'>Page-Enter</span>"                                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>      <span class='chip-keyword'>content</span>="<span class='chip-string'>revealTrans(duration='1', transition='20')</span>" /&gt;</span>                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-variable'>&lt;meta <span class='chip-keyword'>name</span>="<span class='chip-string'>author</span>"                                                             
+<span class="l">&nbsp;&nbsp;10</span>      <span class='chip-keyword'>content</span>="<span class='chip-string'>Ewan Mellor &amp;lt;MakeSomethingUp@ewanmellor.org.uk&amp;gt;</span>" /&gt;</span>        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-variable'>&lt;meta <span class='chip-keyword'>name</span>="<span class='chip-string'>keywords</span>" <span class='chip-keyword'>lang</span>="<span class='chip-string'>en</span>" <span class='chip-keyword'>xml:lang</span>="<span class='chip-string'>en</span>"                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>      <span class='chip-keyword'>content</span>="<span class='chip-string'>Sawfish, Active-Theming, active-theming.jl, hsv.jl, javadoc.jl, javadoc-indexer.py, keyboard-paste.jl, lookup.jl, remote-application.jl, shutdown.jl, string2.jl, url.jl</span>" /&gt;</span>
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-variable'>&lt;meta <span class='chip-keyword'>name</span>="<span class='chip-string'>description</span>" <span class='chip-keyword'>lang</span>="<span class='chip-string'>en</span>" <span class='chip-keyword'>xml:lang</span>="<span class='chip-string'>en</span>"                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>      <span class='chip-keyword'>content</span>="<span class='chip-string'>Sawfish modules by Ewan Mellor.  Active-Theming, hsv.jl, javadoc.jl, javadoc-indexer.py, keyboard-paste.jl, lookup.jl, remote-application.jl, shutdown.jl, string2.jl, url.jl</span>" /&gt;</span>
+<span class="l">&nbsp;&nbsp;15</span><span class='chip-variable'>&lt;meta <span class='chip-keyword'>http-equiv</span>="<span class='chip-string'>Content-Type</span>" <span class='chip-keyword'>content</span>="<span class='chip-string'>text/xhtml; charset=iso-8859-1</span>" /&gt;</span>     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-variable'>&lt;meta <span class='chip-keyword'>http-equiv</span>="<span class='chip-string'>Content-Script-Type</span>" <span class='chip-keyword'>content</span>="<span class='chip-string'>text/javascript</span>" /&gt;</span>             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-variable'>&lt;<span class='chip-keyword'>link</span> <span class='chip-keyword'>rel</span>="<span class='chip-string'>stylesheet</span>" <span class='chip-keyword'>href</span>="<span class='chip-string'>cmor.css</span>" <span class='chip-keyword'>title</span>="<span class='chip-string'>Ewan Mellor</span>" <span class='chip-keyword'>type</span>="<span class='chip-string'>text/css</span>" /&gt;</span>   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-comment'>&lt;!--[if IE]&gt;                                                                    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;link href="ie.css" rel="stylesheet" type="text/css" media="screen"&gt;            
+<span class="l">&nbsp;&nbsp;20</span>&lt;![endif]--&gt;</span>                                                                    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-variable'>&lt;<span class='chip-keyword'>link</span> <span class='chip-keyword'>rev</span>="<span class='chip-string'>made</span>" <span class='chip-keyword'>href</span>="<span class='chip-string'>mailto:MakeSomethingUp@ewanmellor.org.uk</span>" /&gt;</span>             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-variable'>&lt;<span class='chip-keyword'>link</span> <span class='chip-keyword'>rel</span>="<span class='chip-string'>home</span>" <span class='chip-keyword'>href</span>="<span class='chip-string'>index.html</span>" <span class='chip-keyword'>title</span>="<span class='chip-string'>Home page</span>" /&gt;</span>                         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-variable'>&lt;<span class='chip-keyword'>link</span> <span class='chip-keyword'>rel</span>="<span class='chip-string'>up</span>" <span class='chip-keyword'>href</span>="<span class='chip-string'>index.html</span>" <span class='chip-keyword'>title</span>="<span class='chip-string'>Up one level</span>" /&gt;</span>                        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-variable'>&lt;<span class='chip-keyword'>link</span> <span class='chip-keyword'>rel</span>="<span class='chip-string'>Author</span>" <span class='chip-keyword'>href</span>="<span class='chip-string'>index.html</span>" /&gt;</span>                                         
+<span class="l">&nbsp;&nbsp;25</span><span class='chip-comment'>&lt;!-- meta-timestamp start --&gt;</span>                                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-variable'>&lt;meta <span class='chip-keyword'>name</span>="<span class='chip-string'>Last-Modified</span>" <span class='chip-keyword'>content</span>="<span class='chip-string'>Tue May 17 15:34:56 2005 BST</span>" /&gt;</span>            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-comment'>&lt;!-- meta-timestamp end --&gt;</span>                                                     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-variable'>&lt;meta <span class='chip-keyword'>name</span>="<span class='chip-string'>Created</span>" <span class='chip-keyword'>content</span>="<span class='chip-string'>Wed Jul  9 09:26:22 2003 BST</span>" /&gt;</span>                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-variable'>&lt;/head&gt;</span>                                                                         
+<span class="l">&nbsp;&nbsp;30</span><span class='chip-variable'>&lt;body&gt;</span>                                                                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-variable'>&lt;div <span class='chip-keyword'>class</span>="<span class='chip-string'>breadcrumbs</span>"&gt;</span><span class='chip-variable'>&lt;a <span class='chip-keyword'>href</span>="<span class='chip-string'>index.html</span>"&gt;</span>Ewan Mellor<span class='chip-variable'>&lt;/a&gt;</span><span class='chip-variable'>&lt;span              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-keyword'>class</span>="<span class='chip-string'>breadcrumbArrow</span>"&gt;</span>&amp;nbsp;&amp;nbsp;&amp;gt;&amp;nbsp;&amp;nbsp;<span class='chip-variable'>&lt;/span&gt;</span>Sawfish<span class='chip-variable'>&lt;/div&gt;</span>        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;35</span><span class='chip-variable'>&lt;div <span class='chip-keyword'>class</span>="<span class='chip-string'>breadcrumbSkipper</span>"&gt;</span>&amp;nbsp;<span class='chip-variable'>&lt;/div&gt;</span>                                     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-variable'>&lt;div <span class='chip-keyword'>class</span>="<span class='chip-string'>bodyColumn</span>"&gt;</span>                                                        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-variable'>&lt;div <span class='chip-keyword'>style</span>="<span class='chip-string'>width: 100%</span>"&gt;</span>                                                       
+<span class="l">&nbsp;&nbsp;40</span><span class='chip-variable'>&lt;p <span class='chip-keyword'>style</span>="<span class='chip-string'>text-align: center</span>"&gt;</span>                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-variable'>&lt;img <span class='chip-keyword'>src</span>="<span class='chip-string'>sawfish-half.png</span>" <span class='chip-keyword'>width</span>="<span class='chip-string'>205</span>" <span class='chip-keyword'>height</span>="<span class='chip-string'>49</span>" <span class='chip-keyword'>alt</span>="<span class='chip-string'></span>"/&gt;</span>                    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-variable'>&lt;/p&gt;</span>                                                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-variable'>&lt;/div&gt;</span>                                                                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;45</span><span class='chip-variable'>&lt;h1&gt;</span>Sawfish Modules<span class='chip-variable'>&lt;/h1&gt;</span>                                                        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-variable'>&lt;p&gt;</span>Here are some modules for <span class='chip-variable'>&lt;a                                                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-keyword'>href</span>="<span class='chip-string'>http://sawmill.sourceforge.net/</span>"&gt;</span>Sawfish<span class='chip-variable'>&lt;/a&gt;</span>, the window manager.  Each   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>module is at least partially my work, or is a dependency of a module on which   
+<span class="l">&nbsp;&nbsp;50</span>I have worked.  Those that are all my own work and Active-Theming are licenced  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>under <span class='chip-variable'>&lt;a <span class='chip-keyword'>href</span>="<span class='chip-string'>http://www.opensource.org/licenses/mit-license.php</span>"&gt;</span>The MIT      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>Licence<span class='chip-variable'>&lt;/a&gt;</span>, whilst the others are licenced under the <span class='chip-variable'>&lt;a                        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-keyword'>href</span>="<span class='chip-string'>http://www.opensource.org/licenses/gpl-license.php</span>"&gt;</span>GNU General Public    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>Licence (GPL)<span class='chip-variable'>&lt;/a&gt;</span>.<span class='chip-variable'>&lt;/p&gt;</span>                                                          
+<span class="l">&nbsp;&nbsp;55</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-variable'>&lt;p&gt;</span>Each of these modules may be installed by placing the appropriate files in   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>the <span class='chip-variable'>&lt;code&gt;</span>~/.sawfish/lisp/<span class='chip-variable'>&lt;/code&gt;</span> directory.  Configuration instructions for    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>each of the top-level modules are included at the top of the containing         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>file.<span class='chip-variable'>&lt;/p&gt;</span>                                                                       
+<span class="l">&nbsp;&nbsp;60</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-variable'>&lt;/div&gt;</span>                                                                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-variable'>&lt;p&gt;</span><span class='chip-variable'>&lt;br /&gt;</span><span class='chip-variable'>&lt;/p&gt;</span>                                                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;65</span><span class='chip-variable'>&lt;div&gt;</span>                                                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-variable'>&lt;dl <span class='chip-keyword'>class</span>="<span class='chip-string'>edgedmenu</span>"&gt;</span>                                                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-variable'>&lt;dt&gt;</span><span class='chip-variable'>&lt;a <span class='chip-keyword'>name</span>="<span class='chip-string'>active-theming</span>" <span class='chip-keyword'>href</span>=                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  "<span class='chip-string'>/chip/chip.php?file=active-theming.jl&amp;amp;bcURL0=index.html&amp;amp;bcTitle0=Ewan+Mellor&amp;amp;bcURL1=sawfish.html&amp;amp;bcTitle1=Sawfish</span>"
+<span class="l">&nbsp;&nbsp;70</span>  <span class='chip-keyword'>title</span>="<span class='chip-string'>active-theming.jl</span>"&gt;</span>active-theming.jl<span class='chip-variable'>&lt;/a&gt;</span><span class='chip-variable'>&lt;/dt&gt;</span>                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-variable'>&lt;dd&gt;</span><span class='chip-variable'>&lt;div <span class='chip-keyword'>class</span>="<span class='chip-string'>listColumn</span>"&gt;</span>                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-variable'>&lt;p <span class='chip-keyword'>style</span>="<span class='chip-string'>float: right; position: relative; text-align: center; top: -2em;    
+<span class="l">&nbsp;&nbsp;75</span>  right: -160px</span>"&gt;</span><span class='chip-variable'>&lt;a <span class='chip-keyword'>href</span>="<span class='chip-string'>active-theming.jpg</span>"&gt;</span><span class='chip-variable'>&lt;img                              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>src</span>="<span class='chip-string'>active-theming-thumb.jpg</span>" <span class='chip-keyword'>width</span>="<span class='chip-string'>191</span>" <span class='chip-keyword'>height</span>="<span class='chip-string'>137</span>" <span class='chip-keyword'>alt</span>="<span class='chip-string'>Active-Theming   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  Screenshot</span>" /&gt;</span><span class='chip-variable'>&lt;/a&gt;</span><span class='chip-variable'>&lt;br /&gt;</span><span class='chip-variable'>&lt;a <span class='chip-keyword'>href</span>="<span class='chip-string'>active-theming.jpg</span>"&gt;</span>Active-Theming           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  Screenshot<span class='chip-variable'>&lt;/a&gt;</span><span class='chip-variable'>&lt;/p&gt;</span>                                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;80</span>  <span class='chip-variable'>&lt;a                                                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>href</span>="<span class='chip-string'>/chip/chip.php?file=active-theming.jl&amp;amp;bcURL0=index.html&amp;amp;bcTitle0=Ewan+Mellor&amp;amp;bcURL1=sawfish.html&amp;amp;bcTitle1=Sawfish</span>"
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>title</span>="<span class='chip-string'>active-theming.jl</span>"&gt;</span>Active Theming.<span class='chip-variable'>&lt;/a&gt;</span> This module varies the colour   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  of window frames depending upon                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;85</span>    <span class='chip-variable'>&lt;ul&gt;</span>                                                                        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>     <span class='chip-variable'>&lt;li&gt;</span>the host from which the window comes,<span class='chip-variable'>&lt;/li&gt;</span>                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>     <span class='chip-variable'>&lt;li&gt;</span>whether root is logged on at the window,<span class='chip-variable'>&lt;/li&gt;</span>                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>     <span class='chip-variable'>&lt;li&gt;</span>whether the window is focussed,<span class='chip-variable'>&lt;/li&gt;</span>                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>     <span class='chip-variable'>&lt;li&gt;</span>the window's title,<span class='chip-variable'>&lt;/li&gt;</span>                                               
+<span class="l">&nbsp;&nbsp;90</span>     <span class='chip-variable'>&lt;li&gt;</span>the window's group,<span class='chip-variable'>&lt;/li&gt;</span>                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>     <span class='chip-variable'>&lt;li&gt;</span>the window's position,<span class='chip-variable'>&lt;/li&gt;</span>                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>     <span class='chip-variable'>&lt;li&gt;</span>the window's stickiness, or<span class='chip-variable'>&lt;/li&gt;</span>                                       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>     <span class='chip-variable'>&lt;li&gt;</span>the workspace on which the window is placed.<span class='chip-variable'>&lt;/li&gt;</span>                      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    <span class='chip-variable'>&lt;/ul&gt;</span>                                                                       
+<span class="l">&nbsp;&nbsp;95</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  This can be used to convey useful information, or simply to make your         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  desktop more colourful.<span class='chip-variable'>&lt;br /&gt;</span><span class='chip-variable'>&lt;br /&gt;</span>                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  Colours may either be varied using the RGB or the HSV colour models.  Any     
+<span class="l">&nbsp;100</span>  variation method from the list above may vary along any of the axes, so you   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  could change the hue depending upon the host, the saturation if root is       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  logged in, and the value when the window is focussed, for example.            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  Alternatively, you could have windows becoming more red depending upon the    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  workspace and heading towards white when the window is focussed by varying    
+<span class="l">&nbsp;105</span>  both green and blue axes when the window is focussed.<span class='chip-variable'>&lt;br /&gt;</span><span class='chip-variable'>&lt;br /&gt;</span>             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  This module needs support from your current theme.  In the Sawfish            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  distribution, the mono and simple themes have this support.<span class='chip-variable'>&lt;br /&gt;</span><span class='chip-variable'>&lt;br /&gt;</span>       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;110</span>  Depends upon hsv.jl and string2.jl below.<span class='chip-variable'>&lt;br /&gt;</span><span class='chip-variable'>&lt;br /&gt;</span>                         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  Version: 1.1.<span class='chip-variable'>&lt;br /&gt;</span>                                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  Licence: <span class='chip-variable'>&lt;a                                                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>href</span>="<span class='chip-string'>http://www.opensource.org/licenses/mit-license.php</span>"&gt;</span>MIT<span class='chip-variable'>&lt;/a&gt;</span>.<span class='chip-variable'>&lt;br /&gt;</span>      
+<span class="l">&nbsp;115</span>  Authors: <span class='chip-variable'>&lt;a <span class='chip-keyword'>href</span>="<span class='chip-string'>http://www.ewanmellor.org.uk/</span>"&gt;</span>Ewan Mellor<span class='chip-variable'>&lt;/a&gt;</span>, Andrew      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  Rice.<span class='chip-variable'>&lt;/div&gt;</span><span class='chip-variable'>&lt;/dd&gt;</span>                                                              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-variable'>&lt;dt&gt;</span><span class='chip-variable'>&lt;a <span class='chip-keyword'>name</span>="<span class='chip-string'>lookup</span>"                                                          
+<span class="l">&nbsp;120</span>  <span class='chip-keyword'>href</span>="<span class='chip-string'>/chip/chip.php?file=lookup.jl&amp;amp;bcURL0=index.html&amp;amp;bcTitle0=Ewan+Mellor&amp;amp;bcURL1=sawfish.html&amp;amp;bcTitle1=Sawfish</span>"
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>title</span>="<span class='chip-string'>lookup.jl</span>"&gt;</span>lookup.jl<span class='chip-variable'>&lt;/a&gt;</span><span class='chip-variable'>&lt;/dt&gt;</span>                                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-variable'>&lt;dd&gt;</span><span class='chip-variable'>&lt;div <span class='chip-keyword'>class</span>="<span class='chip-string'>listColumn</span>"&gt;</span><span class='chip-variable'>&lt;a                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>href</span>="<span class='chip-string'>/chip/chip.php?file=lookup.jl&amp;amp;bcURL0=index.html&amp;amp;bcTitle0=Ewan+Mellor&amp;amp;bcURL1=sawfish.html&amp;amp;bcTitle1=Sawfish</span>"
+<span class="l">&nbsp;125</span>  <span class='chip-keyword'>title</span>="<span class='chip-string'>lookup.jl</span>"&gt;</span>Look-up routines.  This module will take a search term      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  either from the current selection or by prompting the user, and then will     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  apply that term as appropriate.<span class='chip-variable'>&lt;/a&gt;</span> If the term contains a URL, then it will  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  visit that URL.  Otherwise, the term will be sent to either Google,           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  dictionary.com, thesaurus.com, Multimap, IMDb, Wikipedia, or your Java        
+<span class="l">&nbsp;130</span>  documentation.<span class='chip-variable'>&lt;br /&gt;</span><span class='chip-variable'>&lt;br /&gt;</span>                                                    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  Depends upon javadoc.jl, url.jl, and string2.jl below.  In order to actually  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  use the Javadoc functionality, the javadoc module is dependent upon           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  javadoc-indexer.py, below.  Without javadoc-indexer the other aspects of the  
+<span class="l">&nbsp;135</span>  lookup module will still function, though the javadoc.jl module is required   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  none the less.<span class='chip-variable'>&lt;br /&gt;</span><span class='chip-variable'>&lt;br /&gt;</span>                                                    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  Debian users will require the librep-dev package as well as the normal        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  dependencies of Sawfish.  This is a Debian packaging issue.<span class='chip-variable'>&lt;br /&gt;</span><span class='chip-variable'>&lt;br /&gt;</span>       
+<span class="l">&nbsp;140</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  Version: 1.8.<span class='chip-variable'>&lt;br /&gt;</span>                                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  Licence: <span class='chip-variable'>&lt;a                                                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>href</span>="<span class='chip-string'>http://www.opensource.org/licenses/gpl-license.php</span>"&gt;</span>GPL<span class='chip-variable'>&lt;/a&gt;</span>.<span class='chip-variable'>&lt;br /&gt;</span>      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  Authors: <span class='chip-variable'>&lt;a <span class='chip-keyword'>href</span>="<span class='chip-string'>http://www.ewanmellor.org.uk/</span>"&gt;</span>Ewan Mellor<span class='chip-variable'>&lt;/a&gt;</span>, Yuan.       
+<span class="l">&nbsp;145</span>  <span class='chip-variable'>&lt;/div&gt;</span><span class='chip-variable'>&lt;/dd&gt;</span>                                                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-variable'>&lt;dt&gt;</span><span class='chip-variable'>&lt;a <span class='chip-keyword'>name</span>="<span class='chip-string'>javadoc</span>"                                                         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>href</span>="<span class='chip-string'>/chip/chip.php?file=javadoc.jl&amp;amp;bcURL0=index.html&amp;amp;bcTitle0=Ewan+Mellor&amp;amp;bcURL1=sawfish.html&amp;amp;bcTitle1=Sawfish</span>"
+<span class="l">&nbsp;150</span>  <span class='chip-keyword'>title</span>="<span class='chip-string'>javadoc.jl</span>"&gt;</span>javadoc.jl<span class='chip-variable'>&lt;/a&gt;</span><span class='chip-variable'>&lt;/dt&gt;</span>                                        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-variable'>&lt;dd&gt;</span><span class='chip-variable'>&lt;div <span class='chip-keyword'>class</span>="<span class='chip-string'>listColumn</span>"&gt;</span><span class='chip-variable'>&lt;a                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>href</span>="<span class='chip-string'>/chip/chip.php?file=javadoc.jl&amp;amp;bcURL0=index.html&amp;amp;bcTitle0=Ewan+Mellor&amp;amp;bcURL1=sawfish.html&amp;amp;bcTitle1=Sawfish</span>"
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>title</span>="<span class='chip-string'>javadoc.jl</span>"&gt;</span>Look up a partially or fully qualified class or package    
+<span class="l">&nbsp;155</span>  name in your Javadoc- or Doxygen-generated documentation.<span class='chip-variable'>&lt;/a&gt;</span><span class='chip-variable'>&lt;br /&gt;</span><span class='chip-variable'>&lt;br /&gt;</span>     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  Depends upon javadoc-indexer.py below.<span class='chip-variable'>&lt;br /&gt;</span><span class='chip-variable'>&lt;br /&gt;</span>                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  Version: 1.1.<span class='chip-variable'>&lt;br /&gt;</span>                                                           
+<span class="l">&nbsp;160</span>  Licence: <span class='chip-variable'>&lt;a                                                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>href</span>="<span class='chip-string'>http://www.opensource.org/licenses/mit-license.php</span>"&gt;</span>MIT<span class='chip-variable'>&lt;/a&gt;</span>.<span class='chip-variable'>&lt;br /&gt;</span>      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  Author: <span class='chip-variable'>&lt;a <span class='chip-keyword'>href</span>="<span class='chip-string'>http://www.ewanmellor.org.uk/</span>"&gt;</span>Ewan Mellor<span class='chip-variable'>&lt;/a&gt;</span>.              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-variable'>&lt;/div&gt;</span><span class='chip-variable'>&lt;/dd&gt;</span>                                                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;165</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-variable'>&lt;dt&gt;</span><span class='chip-variable'>&lt;a <span class='chip-keyword'>name</span>="<span class='chip-string'>javadoc-indexer</span>"                                                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>href</span>="<span class='chip-string'>/chip/chip.php?file=javadoc-indexer.py&amp;amp;bcURL0=index.html&amp;amp;bcTitle0=Ewan+Mellor&amp;amp;bcURL1=sawfish.html&amp;amp;bcTitle1=Sawfish</span>"
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>title</span>="<span class='chip-string'>javadoc-indexer.py</span>"&gt;</span>javadoc-indexer.py<span class='chip-variable'>&lt;/a&gt;</span><span class='chip-variable'>&lt;/dt&gt;</span>                        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;170</span>  <span class='chip-variable'>&lt;dd&gt;</span><span class='chip-variable'>&lt;div <span class='chip-keyword'>class</span>="<span class='chip-string'>listColumn</span>"&gt;</span><span class='chip-variable'>&lt;a                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>href</span>="<span class='chip-string'>/chip/chip.php?file=javadoc-indexer.py&amp;amp;bcURL0=index.html&amp;amp;bcTitle0=Ewan+Mellor&amp;amp;bcURL1=sawfish.html&amp;amp;bcTitle1=Sawfish</span>"
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>title</span>="<span class='chip-string'>javadoc-indexer.py</span>"&gt;</span>Generate an index file mapping partially or fully  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  qualified class or package names to the corresponding documentation           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  filename.<span class='chip-variable'>&lt;/a&gt;</span>  Understands both Javadoc and Doxygen output.<span class='chip-variable'>&lt;br /&gt;</span><span class='chip-variable'>&lt;br /&gt;</span>       
+<span class="l">&nbsp;175</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  Version: 1.2.<span class='chip-variable'>&lt;br /&gt;</span>                                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  Licence: <span class='chip-variable'>&lt;a                                                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>href</span>="<span class='chip-string'>http://www.opensource.org/licenses/mit-license.php</span>"&gt;</span>MIT<span class='chip-variable'>&lt;/a&gt;</span>.<span class='chip-variable'>&lt;br /&gt;</span>      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  Author: <span class='chip-variable'>&lt;a <span class='chip-keyword'>href</span>="<span class='chip-string'>http://www.ewanmellor.org.uk/</span>"&gt;</span>Ewan Mellor<span class='chip-variable'>&lt;/a&gt;</span>.              
+<span class="l">&nbsp;180</span>  <span class='chip-variable'>&lt;/div&gt;</span><span class='chip-variable'>&lt;/dd&gt;</span>                                                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-variable'>&lt;dt&gt;</span><span class='chip-variable'>&lt;a <span class='chip-keyword'>name</span>="<span class='chip-string'>hsv</span>"                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>href</span>="<span class='chip-string'>/chip/chip.php?file=hsv.jl&amp;amp;bcURL0=index.html&amp;amp;bcTitle0=Ewan+Mellor&amp;amp;bcURL1=sawfish.html&amp;amp;bcTitle1=Sawfish</span>"
+<span class="l">&nbsp;185</span>  <span class='chip-keyword'>title</span>="<span class='chip-string'>hsv.jl</span>"&gt;</span>hsv.jl<span class='chip-variable'>&lt;/a&gt;</span><span class='chip-variable'>&lt;/dt&gt;</span>                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-variable'>&lt;dd&gt;</span><span class='chip-variable'>&lt;div <span class='chip-keyword'>class</span>="<span class='chip-string'>listColumn</span>"&gt;</span><span class='chip-variable'>&lt;a                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>href</span>="<span class='chip-string'>/chip/chip.php?file=hsv.jl&amp;amp;bcURL0=index.html&amp;amp;bcTitle0=Ewan+Mellor&amp;amp;bcURL1=sawfish.html&amp;amp;bcTitle1=Sawfish</span>"
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>title</span>="<span class='chip-string'>hsv.jl</span>"&gt;</span>HSV to RGB conversion.<span class='chip-variable'>&lt;/a&gt;</span><span class='chip-variable'>&lt;br /&gt;</span><span class='chip-variable'>&lt;br /&gt;</span>                         
+<span class="l">&nbsp;190</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  Version: 1.2.<span class='chip-variable'>&lt;br /&gt;</span>                                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  Licence: <span class='chip-variable'>&lt;a                                                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>href</span>="<span class='chip-string'>http://www.opensource.org/licenses/mit-license.php</span>"&gt;</span>MIT<span class='chip-variable'>&lt;/a&gt;</span>.<span class='chip-variable'>&lt;br /&gt;</span>      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  Author: <span class='chip-variable'>&lt;a <span class='chip-keyword'>href</span>="<span class='chip-string'>http://www.ewanmellor.org.uk/</span>"&gt;</span>Ewan Mellor<span class='chip-variable'>&lt;/a&gt;</span>.              
+<span class="l">&nbsp;195</span>  <span class='chip-variable'>&lt;/div&gt;</span><span class='chip-variable'>&lt;/dd&gt;</span>                                                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-variable'>&lt;dt&gt;</span><span class='chip-variable'>&lt;a <span class='chip-keyword'>name</span>="<span class='chip-string'>keyboard-paste</span>"                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>href</span>="<span class='chip-string'>/chip/chip.php?file=keyboard-paste.jl&amp;amp;bcURL0=index.html&amp;amp;bcTitle0=Ewan+Mellor&amp;amp;bcURL1=sawfish.html&amp;amp;bcTitle1=Sawfish</span>"
+<span class="l">&nbsp;200</span>  <span class='chip-keyword'>title</span>="<span class='chip-string'>keyboard-paste.jl</span>"&gt;</span>keyboard-paste.jl<span class='chip-variable'>&lt;/a&gt;</span><span class='chip-variable'>&lt;/dt&gt;</span>                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-variable'>&lt;dd&gt;</span><span class='chip-variable'>&lt;div <span class='chip-keyword'>class</span>="<span class='chip-string'>listColumn</span>"&gt;</span><span class='chip-variable'>&lt;a                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>href</span>="<span class='chip-string'>/chip/chip.php?file=keyboard-paste.jl&amp;amp;bcURL0=index.html&amp;amp;bcTitle0=Ewan+Mellor&amp;amp;bcURL1=sawfish.html&amp;amp;bcTitle1=Sawfish</span>"
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>title</span>="<span class='chip-string'>keyboard-paste.jl</span>"&gt;</span>One function that allows one to paste the primary   
+<span class="l">&nbsp;205</span>  selection using the keyboard, and one for clearing that selection.<span class='chip-variable'>&lt;/a&gt;</span>        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  Includes a workaround for the XSendEvent issue with XEmacs.<span class='chip-variable'>&lt;br /&gt;</span><span class='chip-variable'>&lt;br /&gt;</span>       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  Version: 1.2.<span class='chip-variable'>&lt;br /&gt;</span>                                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  Licence: <span class='chip-variable'>&lt;a                                                                   
+<span class="l">&nbsp;210</span>  <span class='chip-keyword'>href</span>="<span class='chip-string'>http://www.opensource.org/licenses/mit-license.php</span>"&gt;</span>MIT<span class='chip-variable'>&lt;/a&gt;</span>.<span class='chip-variable'>&lt;br /&gt;</span>      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  Author: <span class='chip-variable'>&lt;a <span class='chip-keyword'>href</span>="<span class='chip-string'>http://www.ewanmellor.org.uk/</span>"&gt;</span>Ewan Mellor<span class='chip-variable'>&lt;/a&gt;</span>.              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-variable'>&lt;/div&gt;</span><span class='chip-variable'>&lt;/dd&gt;</span>                                                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;215</span>  <span class='chip-variable'>&lt;dt&gt;</span><span class='chip-variable'>&lt;a <span class='chip-keyword'>name</span>="<span class='chip-string'>shutdown</span>"                                                        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>href</span>="<span class='chip-string'>/chip/chip.php?file=shutdown.jl&amp;amp;bcURL0=index.html&amp;amp;bcTitle0=Ewan+Mellor&amp;amp;bcURL1=sawfish.html&amp;amp;bcTitle1=Sawfish</span>"
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>title</span>="<span class='chip-string'>shutdown.jl</span>"&gt;</span>shutdown.jl<span class='chip-variable'>&lt;/a&gt;</span><span class='chip-variable'>&lt;/dt&gt;</span>                                      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-variable'>&lt;dd&gt;</span><span class='chip-variable'>&lt;div <span class='chip-keyword'>class</span>="<span class='chip-string'>listColumn</span>"&gt;</span><span class='chip-variable'>&lt;a                                                
+<span class="l">&nbsp;220</span>  <span class='chip-keyword'>href</span>="<span class='chip-string'>/chip/chip.php?file=shutdown.jl&amp;amp;bcURL0=index.html&amp;amp;bcTitle0=Ewan+Mellor&amp;amp;bcURL1=sawfish.html&amp;amp;bcTitle1=Sawfish</span>"
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>title</span>="<span class='chip-string'>shutdown.jl</span>"&gt;</span>One function, which closes windows gracefully.<span class='chip-variable'>&lt;/a&gt;</span> If     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  one logs out without closing Opera first, then next time one logs in, Opera   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  complains that it was terminated unexpectedly.  This function ensures a       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  graceful close down, and thus a peaceful restart.  It may be configured to    
+<span class="l">&nbsp;225</span>  shut down any window that can be closed with a single keystroke.<span class='chip-variable'>&lt;br /&gt;</span><span class='chip-variable'>&lt;br /&gt;</span>  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  Version: 1.0.<span class='chip-variable'>&lt;br /&gt;</span>                                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  Licence: <span class='chip-variable'>&lt;a                                                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>href</span>="<span class='chip-string'>http://www.opensource.org/licenses/mit-license.php</span>"&gt;</span>MIT<span class='chip-variable'>&lt;/a&gt;</span>.<span class='chip-variable'>&lt;br /&gt;</span>      
+<span class="l">&nbsp;230</span>  Author: <span class='chip-variable'>&lt;a <span class='chip-keyword'>href</span>="<span class='chip-string'>http://www.ewanmellor.org.uk/</span>"&gt;</span>Ewan Mellor<span class='chip-variable'>&lt;/a&gt;</span>.              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-variable'>&lt;/div&gt;</span><span class='chip-variable'>&lt;/dd&gt;</span>                                                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-variable'>&lt;dt&gt;</span><span class='chip-variable'>&lt;a <span class='chip-keyword'>name</span>="<span class='chip-string'>url</span>"                                                             
+<span class="l">&nbsp;235</span>  <span class='chip-keyword'>href</span>="<span class='chip-string'>/chip/chip.php?file=url.jl&amp;amp;bcURL0=index.html&amp;amp;bcTitle0=Ewan+Mellor&amp;amp;bcURL1=sawfish.html&amp;amp;bcTitle1=Sawfish</span>"
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>title</span>="<span class='chip-string'>url.jl</span>"&gt;</span>url.jl<span class='chip-variable'>&lt;/a&gt;</span><span class='chip-variable'>&lt;/dt&gt;</span>                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-variable'>&lt;dd&gt;</span><span class='chip-variable'>&lt;div <span class='chip-keyword'>class</span>="<span class='chip-string'>listColumn</span>"&gt;</span><span class='chip-variable'>&lt;a                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>href</span>="<span class='chip-string'>/chip/chip.php?file=url.jl&amp;amp;bcURL0=index.html&amp;amp;bcTitle0=Ewan+Mellor&amp;amp;bcURL1=sawfish.html&amp;amp;bcTitle1=Sawfish</span>"
+<span class="l">&nbsp;240</span>  <span class='chip-keyword'>title</span>="<span class='chip-string'>url.jl</span>"&gt;</span>A URL library.  Contains a function for escaping query         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  parameters, and one for isolating URLs from strings.  It also contains a      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  function for finding the window containing your web browser, or running your  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  browser if it is not already open, and one for visiting a URL in that         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  window.<span class='chip-variable'>&lt;/a&gt;</span><span class='chip-variable'>&lt;br /&gt;</span><span class='chip-variable'>&lt;br /&gt;</span>                                                       
+<span class="l">&nbsp;245</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  Depends upon remote-application.jl below.<span class='chip-variable'>&lt;br /&gt;</span><span class='chip-variable'>&lt;br /&gt;</span>                         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  Debian users will require the librep-dev package as well as the normal        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  dependencies of Sawfish.  This is a Debian packaging issue.<span class='chip-variable'>&lt;br /&gt;</span><span class='chip-variable'>&lt;br /&gt;</span>       
+<span class="l">&nbsp;250</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  Version: 1.12.<span class='chip-variable'>&lt;br /&gt;</span>                                                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  Licence: <span class='chip-variable'>&lt;a                                                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>href</span>="<span class='chip-string'>http://www.opensource.org/licenses/gpl-license.php</span>"&gt;</span>GPL<span class='chip-variable'>&lt;/a&gt;</span>.<span class='chip-variable'>&lt;br /&gt;</span>      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  Authors: <span class='chip-variable'>&lt;a <span class='chip-keyword'>href</span>="<span class='chip-string'>http://www.ewanmellor.org.uk/</span>"&gt;</span>Ewan Mellor<span class='chip-variable'>&lt;/a&gt;</span>,             
+<span class="l">&nbsp;255</span>  <span class='chip-variable'>&lt;a <span class='chip-keyword'>href</span>="<span class='chip-string'>http://www.cl.cam.ac.uk/users/mjp41/</span>"&gt;</span>Matthew Parkinson<span class='chip-variable'>&lt;/a&gt;</span>, Yuan,   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  Sen Nagata, William M. Perry.                                                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-variable'>&lt;/div&gt;</span><span class='chip-variable'>&lt;/dd&gt;</span>                                                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;260</span>  <span class='chip-variable'>&lt;dt&gt;</span><span class='chip-variable'>&lt;a <span class='chip-keyword'>name</span>="<span class='chip-string'>remote-application</span>"                                              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>href</span>="<span class='chip-string'>/chip/chip.php?file=remote-application.jl&amp;amp;bcURL0=index.html&amp;amp;bcTitle0=Ewan+Mellor&amp;amp;bcURL1=sawfish.html&amp;amp;bcTitle1=Sawfish</span>"
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>title</span>="<span class='chip-string'>remote-application.jl</span>"&gt;</span>remote-application.jl<span class='chip-variable'>&lt;/a&gt;</span><span class='chip-variable'>&lt;/dt&gt;</span>                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-variable'>&lt;dd&gt;</span><span class='chip-variable'>&lt;div <span class='chip-keyword'>class</span>="<span class='chip-string'>listColumn</span>"&gt;</span><span class='chip-variable'>&lt;a                                                
+<span class="l">&nbsp;265</span>  <span class='chip-keyword'>href</span>="<span class='chip-string'>/chip/chip.php?file=remote-application.jl&amp;amp;bcURL0=index.html&amp;amp;bcTitle0=Ewan+Mellor&amp;amp;bcURL1=sawfish.html&amp;amp;bcTitle1=Sawfish</span>"
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>title</span>="<span class='chip-string'>remote-application.jl</span>"&gt;</span>A module for communication with                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  applications.<span class='chip-variable'>&lt;/a&gt;</span> Applications such as Opera, Mozilla, and XEmacs may be      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  controlled from the command line.  This module abstracts such communication,  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  finding a running instance or starting one if necessary, queuing and passing  
+<span class="l">&nbsp;270</span>  requests, and focussing the correct window as required.<span class='chip-variable'>&lt;br /&gt;</span><span class='chip-variable'>&lt;br /&gt;</span>           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  Version: 1.2.<span class='chip-variable'>&lt;br /&gt;</span>                                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  Licence: <span class='chip-variable'>&lt;a                                                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>href</span>="<span class='chip-string'>http://www.opensource.org/licenses/mit-license.php</span>"&gt;</span>MIT<span class='chip-variable'>&lt;/a&gt;</span>.<span class='chip-variable'>&lt;br /&gt;</span>      
+<span class="l">&nbsp;275</span>  Author: <span class='chip-variable'>&lt;a <span class='chip-keyword'>href</span>="<span class='chip-string'>http://www.ewanmellor.org.uk/</span>"&gt;</span>Ewan Mellor<span class='chip-variable'>&lt;/a&gt;</span>.              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-variable'>&lt;/div&gt;</span><span class='chip-variable'>&lt;/dd&gt;</span>                                                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-variable'>&lt;dt&gt;</span><span class='chip-variable'>&lt;a <span class='chip-keyword'>name</span>="<span class='chip-string'>string2</span>"                                                         
+<span class="l">&nbsp;280</span>  <span class='chip-keyword'>href</span>="<span class='chip-string'>/chip/chip.php?file=string2.jl&amp;amp;bcURL0=index.html&amp;amp;bcTitle0=Ewan+Mellor&amp;amp;bcURL1=sawfish.html&amp;amp;bcTitle1=Sawfish</span>"
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>title</span>="<span class='chip-string'>string2.jl</span>"&gt;</span>string2.jl<span class='chip-variable'>&lt;/a&gt;</span><span class='chip-variable'>&lt;/dt&gt;</span>                                        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-variable'>&lt;dd&gt;</span><span class='chip-variable'>&lt;div <span class='chip-keyword'>class</span>="<span class='chip-string'>listColumn</span>"&gt;</span><span class='chip-variable'>&lt;a                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>href</span>="<span class='chip-string'>/chip/chip.php?file=string2.jl&amp;amp;bcURL0=index.html&amp;amp;bcTitle0=Ewan+Mellor&amp;amp;bcURL1=sawfish.html&amp;amp;bcTitle1=Sawfish</span>"
+<span class="l">&nbsp;285</span>  <span class='chip-keyword'>title</span>="<span class='chip-string'>string2.jl</span>"&gt;</span>A string manipulation library.<span class='chip-variable'>&lt;/a&gt;</span><span class='chip-variable'>&lt;br /&gt;</span><span class='chip-variable'>&lt;br /&gt;</span>             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  Version: 1.6.<span class='chip-variable'>&lt;br /&gt;</span>                                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  Licence: unknown.<span class='chip-variable'>&lt;br /&gt;</span>                                                       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  Author: unknown.                                                              
+<span class="l">&nbsp;290</span>  <span class='chip-variable'>&lt;/div&gt;</span><span class='chip-variable'>&lt;/dd&gt;</span>                                                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-variable'>&lt;/dl&gt;</span>                                                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-variable'>&lt;/div&gt;</span>                                                                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-variable'>&lt;/body&gt;</span>                                                                         
+<span class="l">&nbsp;295</span><span class='chip-variable'>&lt;/html&gt;</span>                                                                         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></pre>
+<p style="text-align: center">&middot; sawfish.html ends &middot;</p>
+<p class="chip-bottomlink"><span id='chip-bottomlink'>
+To load this file without formatting, visit sawfish.html.  This is a spam-protection
+measure; sorry for the inconvenience.
+</span>
+</p>
+<p class="chip-attribution"><a href='http://www.ewanmellor.org.uk/chip.html'>Generated by CHIP: Code Highlighting in PHP, version X.Y.Z.</a></p>
+</body>
+</html>

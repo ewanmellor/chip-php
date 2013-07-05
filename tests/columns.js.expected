@@ -1,0 +1,292 @@
+<!DOCTYPE html PUBLIC
+               "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>columns.js</title>
+<meta http-equiv='Page-Enter'
+           content='revealTrans(duration="1",transition="20")' />
+<link rel="stylesheet" href="chip.css" title="CHIP"
+      type="text/css" />
+<!--[if IE]>
+<link href="chip-ie.css" rel="stylesheet" type="text/css"
+      media="screen">
+<![endif]-->
+<script type="text/javascript" src="rot13.js"></script>
+<script type="text/javascript" src="chip.js"></script>
+<script type="text/javascript">
+// <!--
+
+chipFilePath = 'columns.js';
+chipPlainPageAnchorText = '(Load columns.js without formatting)';
+chipEmailLabelPrefix = 'chip-rotemailaddress';
+chipTopLinkLabel = 'chip-toplink';
+chipBottomLinkLabel = 'chip-bottomlink';
+
+  function chipOnload()
+  {
+
+    chipFixRotEmails();
+    chipFixLinks();
+  }
+
+// -->
+</script>
+</head>
+<body onload="javascript:chipOnload()">
+<p style="text-align: right"><span id='chip-toplink'>
+To load this file without formatting, visit columns.js.  This is a spam-protection
+measure; sorry for the inconvenience.
+</span>
+</p>
+<p style="text-align: center">&middot; columns.js &middot;</p>
+<pre>
+<span class="l">&nbsp;&nbsp;&nbsp;1</span><span class='chip-comment'>/*                                                                              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>columns.js.  Version 1.4.                                                       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;5</span>Copyright (c) 2003, 2004 Ewan Mellor.  All rights reserved.                     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>This software is covered by the MIT Licence                                     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class='chip-url'><a href='http://www.opensource.org/licenses/mit-license.html'>http://www.opensource.org/licenses/mit-license.html</a></span>&gt;:                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;10</span>  Permission is hereby granted, free of charge, to any person obtaining a copy  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  of this software and associated documentation files (the "Software"), to      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  deal in the Software without restriction, including without limitation the    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  sell copies of the Software, and to permit persons to whom the Software is    
+<span class="l">&nbsp;&nbsp;15</span>  furnished to do so, subject to the following conditions:                      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    The above copyright notice and this permission notice shall be included in  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    all copies or substantial portions of the Software.                         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;20</span>    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING     
+<span class="l">&nbsp;&nbsp;25</span>    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    DEALINGS IN THE SOFTWARE.                                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>Dynamic single or double column text flow.  This module flows text in either    
+<span class="l">&nbsp;&nbsp;30</span>one column or two, depending upon the horizontal space available in the         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>window.  It keeps the columns a comfortable width for reading, and places a     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>margin to the left hand side if there is room.  If there is room for only one   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>column, the text from the second column is placed immediately following the     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>first.  Sections of text may be marked as flowing across both columns, and      
+<span class="l">&nbsp;&nbsp;35</span>unmarked text will flow across the entire page regardless of the arrangement    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>of columns.                                                                     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>This file may be obtained from &lt;<span class='chip-url'><a href='http://www.ewanmellor.org.uk/javascript/'>http://www.ewanmellor.org.uk/javascript/</a></span>&gt;.      
+<span class="l">&nbsp;&nbsp;40</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>This file depends upon sniffer.js by Eric Krok, Andy King, and Michel           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>Plungjan.                                                                       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>To use this file, call columns() from your page's onload and onresize event     
+<span class="l">&nbsp;&nbsp;45</span>handlers.  Content should be placed within div elements with IDs                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>"bigcontentN", and thence inside divs with IDs "leftcontentN" and               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>"rightcontentN".  The N should be an integer, starting at 0 and incrementing    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>for each separate column block.  The leftcontentN and rightcontentN divs mark   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>the left and right-hand columns respectively.  Alternatively, text may be       
+<span class="l">&nbsp;&nbsp;50</span>inside an element with ID "widecontentN", which marks it as flowing across      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>both columns.                                                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>*/</span>                                                                              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;55</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-keyword'>function</span> columns()                                                              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>{                                                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>var</span> pixelsWidePerPointHigh = 0.58;                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;60</span>  <span class='chip-keyword'>var</span> bodyMargin = 20;                                                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>var</span> desiredMargin = 5; <span class='chip-comment'>// en (ish)                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span>  <span class='chip-keyword'>var</span> desiredCharsAcross = 72; <span class='chip-comment'>// chars                                         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span>                                                                                
+<span class="l">&nbsp;&nbsp;65</span>  <span class='chip-keyword'>var</span> points = baseTextPoints();                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>var</span> desiredContentMargin = Math.floor(                                        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    desiredMargin * pixelsWidePerPointHigh * points); <span class='chip-comment'>// px                     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span>  <span class='chip-keyword'>var</span> desiredContentWidth = Math.floor(                                         
+<span class="l">&nbsp;&nbsp;70</span>    desiredCharsAcross * pixelsWidePerPointHigh * points); <span class='chip-comment'>// px                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>var</span> dw =                                                                      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    document.documentElement ?                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    (document.documentElement.clientWidth ?                                     
+<span class="l">&nbsp;&nbsp;75</span>     document.documentElement.clientWidth :                                     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>     document.documentElement.offsetWidth - 20) :                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    window.innerWidth ?                                                         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    window.innerWidth :                                                         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    document.width ?                                                            
+<span class="l">&nbsp;&nbsp;80</span>    document.width :                                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    document.body ?                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    document.body.clientWidth :                                                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    desiredContentWidth;                                                        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;85</span>  dw = dw - bodyMargin;                                                         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>var</span> chosenBigContentWidth;                                                    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>var</span> chosenContentWidth;                                                       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>var</span> chosenContentMargin;                                                      
+<span class="l">&nbsp;&nbsp;90</span>  <span class='chip-keyword'>var</span> chosenCentreContentMargin;                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>var</span> chosenWideContentWidth;                                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>var</span> chosenWideContentMargin;                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>var</span> twoColumns;                                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;95</span>  <span class='chip-keyword'>var</span> hackedMarginFactor = is_opera || is_moz ? 1 : 2;                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>var</span> hackedDesiredContentMargin =                                              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    Math.floor(desiredContentMargin / hackedMarginFactor);                      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;100</span>  <span class='chip-keyword'>if</span> (dw &lt; desiredContentWidth)                                                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  {                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    <span class='chip-comment'>// Less than enough room for one column.  Thus, one narrow column.          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    chosenBigContentWidth = "<span class='chip-string'>100%</span>";                                             
+<span class="l">&nbsp;105</span>    chosenContentWidth = "<span class='chip-string'>100%</span>";                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    chosenContentMargin = "<span class='chip-string'>0px</span>";                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    chosenWideContentWidth = "<span class='chip-string'>100%</span>";                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    chosenWideContentMargin = "<span class='chip-string'>0px</span>";                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    twoColumns = <span class='chip-keyword'>false</span>;                                                         
+<span class="l">&nbsp;110</span>  }                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>else</span> <span class='chip-keyword'>if</span> (dw &lt; desiredContentWidth + desiredContentMargin)                     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  {                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    <span class='chip-comment'>// Room for one full column, but with a less-than-full left margin.         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span>                                                                                
+<span class="l">&nbsp;115</span>    chosenBigContentWidth = "<span class='chip-string'>100%</span>";                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    chosenContentWidth = desiredContentWidth + "<span class='chip-string'>px</span>";                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    chosenContentMargin =                                                       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>      ((dw - desiredContentWidth) / hackedMarginFactor) + "<span class='chip-string'>px</span>";                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    chosenWideContentWidth = desiredContentWidth + "<span class='chip-string'>px</span>";                        
+<span class="l">&nbsp;120</span>    chosenWideContentMargin = chosenContentMargin;                              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    twoColumns = <span class='chip-keyword'>false</span>;                                                         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  }                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>else</span> <span class='chip-keyword'>if</span> (dw &lt; desiredContentWidth * 2 + desiredContentMargin)                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  {                                                                             
+<span class="l">&nbsp;125</span>    <span class='chip-comment'>// Less than enough for two full content columns with a centre margin.      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span>    <span class='chip-comment'>// Thus, one full column and a full left margin.                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    chosenBigContentWidth =                                                     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>      desiredContentWidth + desiredContentMargin + "<span class='chip-string'>px</span>";                        
+<span class="l">&nbsp;130</span>    chosenContentWidth = desiredContentWidth + "<span class='chip-string'>px</span>";                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    chosenContentMargin = hackedDesiredContentMargin + "<span class='chip-string'>px</span>";                    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    chosenWideContentWidth = desiredContentWidth + "<span class='chip-string'>px</span>";                        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    chosenWideContentMargin = desiredContentMargin + "<span class='chip-string'>px</span>";                      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    twoColumns = <span class='chip-keyword'>false</span>;                                                         
+<span class="l">&nbsp;135</span>  }                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>else</span> <span class='chip-keyword'>if</span> (dw &lt; (desiredContentWidth + desiredContentMargin) * 2)               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  {                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    <span class='chip-comment'>// Less than enough for two columns with full left and centre margins,      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span>    <span class='chip-comment'>// thus two full content columns with a full centre but a less than full    
+<span class="l">&nbsp;140</span></span>    <span class='chip-comment'>// left margin.                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    chosenBigContentWidth = "<span class='chip-string'>100%</span>";                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    chosenContentWidth = desiredContentWidth + "<span class='chip-string'>px</span>";                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    chosenContentMargin =                                                       
+<span class="l">&nbsp;145</span>      ((dw - desiredContentWidth * 2 -                                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>        desiredContentMargin) / hackedMarginFactor) + "<span class='chip-string'>px</span>";                     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    chosenCentreContentMargin = desiredContentMargin + "<span class='chip-string'>px</span>";                    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    chosenWideContentWidth = (desiredContentWidth * 2) + "<span class='chip-string'>px</span>";                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    chosenWideContentMargin =                                                   
+<span class="l">&nbsp;150</span>      (dw - desiredContentWidth * 2 - desiredContentMargin) + "<span class='chip-string'>px</span>";             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    twoColumns = <span class='chip-keyword'>true</span>;                                                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  }                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>else</span>                                                                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  {                                                                             
+<span class="l">&nbsp;155</span>    <span class='chip-comment'>// Room for two full columns and full left and centre margins.              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span></span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    chosenBigContentWidth =                                                     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>      (desiredContentWidth + desiredContentMargin) * 2 + "<span class='chip-string'>px</span>";                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    chosenContentWidth = desiredContentWidth + "<span class='chip-string'>px</span>";                            
+<span class="l">&nbsp;160</span>    chosenContentMargin = hackedDesiredContentMargin + "<span class='chip-string'>px</span>";                    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    chosenCentreContentMargin = desiredContentMargin + "<span class='chip-string'>px</span>";                    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    chosenWideContentWidth =                                                    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>      (desiredContentWidth * 2 + desiredContentMargin) + "<span class='chip-string'>px</span>";                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    chosenWideContentMargin = desiredContentMargin + "<span class='chip-string'>px</span>";                      
+<span class="l">&nbsp;165</span>    twoColumns = <span class='chip-keyword'>true</span>;                                                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  }                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>if</span> (twoColumns)                                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  {                                                                             
+<span class="l">&nbsp;170</span>    apply("<span class='chip-string'>leftcontent</span>",  chosenContentWidth,                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>          "<span class='chip-string'>0 0 0 </span>" + chosenContentMargin, "<span class='chip-string'>left</span>");                              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    apply("<span class='chip-string'>rightcontent</span>", chosenContentWidth,                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>          "<span class='chip-string'>0 0 0 </span>" + chosenCentreContentMargin, "<span class='chip-string'>right</span>");                       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  }                                                                             
+<span class="l">&nbsp;175</span>  <span class='chip-keyword'>else</span>                                                                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  {                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    apply("<span class='chip-string'>leftcontent</span>", chosenContentWidth,                                    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>          "<span class='chip-string'>0 0 0 </span>" + chosenContentMargin, "<span class='chip-string'>right</span>");                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;180</span>    apply("<span class='chip-string'>rightcontent</span>", chosenContentWidth,                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>          "<span class='chip-string'>1em 0 0 </span>" + chosenContentMargin, "<span class='chip-string'>right</span>");                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  }                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  apply("<span class='chip-string'>bigcontent</span>", chosenBigContentWidth, "<span class='chip-string'>0 0 0 0</span>", "<span class='chip-string'>none</span>");                
+<span class="l">&nbsp;185</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  apply("<span class='chip-string'>widecontent</span>", chosenWideContentWidth,                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>        "<span class='chip-string'>0 0 0 </span>" + chosenWideContentMargin, "<span class='chip-string'>none</span>");                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>}                                                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;190</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-keyword'>function</span> apply(id, width, leftMargin, floats)                                   
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>{                                                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>var</span> i = 0;                                                                    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>do</span>                                                                            
+<span class="l">&nbsp;195</span>  {                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    <span class='chip-keyword'>var</span> element = document.getElementById(id + i);                              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    <span class='chip-keyword'>if</span> (element)                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    {                                                                           
+<span class="l">&nbsp;200</span>      element.style.width = width;                                              
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>      element.style.margin = leftMargin;                                        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>      element.style.padding = "<span class='chip-string'>0 0 0 0</span>";                                        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>      element.style.visibility = "<span class='chip-string'>visible</span>";                                     
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>      element.style["<span class='chip-string'>float</span>"] = floats;                                          
+<span class="l">&nbsp;205</span>    }                                                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    <span class='chip-keyword'>else</span>                                                                        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    {                                                                           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>      <span class='chip-keyword'>break</span>;                                                                    
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    }                                                                           
+<span class="l">&nbsp;210</span>    i++;                                                                        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  } <span class='chip-keyword'>while</span> (<span class='chip-keyword'>true</span>);                                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>}                                                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;215</span><span class='chip-comment'>/**                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span> * <span class='chip-inCommentKeyword'>@return</span> The size, in points, of the base typeface, or a guess at that        
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span> * value.                                                                       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span> */</span>                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class='chip-keyword'>function</span> baseTextPoints()                                                       
+<span class="l">&nbsp;220</span>{                                                                               
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>var</span> els = document.getElementsByTagName("<span class='chip-string'>p</span>");                                 
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  <span class='chip-keyword'>if</span> (els)                                                                      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  {                                                                             
+<span class="l">&nbsp;225</span>    <span class='chip-keyword'>var</span> topP = els[0];                                                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>                                                                                
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    <span class='chip-keyword'>return</span> parseInt(                                                            
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>      topP.currentStyle ?                                                       
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>      topP.currentStyle.fontSize :                                              
+<span class="l">&nbsp;230</span>      document.defaultView &amp;&amp; document.defaultView.getComputedStyle ?           
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>      document.defaultView.getComputedStyle(topP, <span class='chip-keyword'>null</span>)                         
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>      .getPropertyValue("<span class='chip-string'>font-size</span>") :                                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>      12);                                                                      
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  }                                                                             
+<span class="l">&nbsp;235</span>  <span class='chip-keyword'>else</span>                                                                          
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  {                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>    <span class='chip-keyword'>return</span> 12;                                                                  
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>  }                                                                             
+<span class="l">&nbsp;&nbsp;&nbsp;&nbsp;</span>}                                                                               
+<span class="l">&nbsp;240</span></pre>
+<p style="text-align: center">&middot; columns.js ends &middot;</p>
+<p class="chip-bottomlink"><span id='chip-bottomlink'>
+To load this file without formatting, visit columns.js.  This is a spam-protection
+measure; sorry for the inconvenience.
+</span>
+</p>
+<p class="chip-attribution"><a href='http://www.ewanmellor.org.uk/chip.html'>Generated by CHIP: Code Highlighting in PHP, version X.Y.Z.</a></p>
+</body>
+</html>

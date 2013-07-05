@@ -1,0 +1,13 @@
+LINE="Include /etc/apacheconf/visible.d/50chip.conf"
+
+COMMENT_BLOCK="
+#
+# Configuration for CHIP: Code Highlighting in PHP.
+# 
+# To disable CHIP, comment out this line; if you remove this line then it will
+# be reinstated on upgrade, but if you comment it out, then it will be
+# preserved.
+# 
+"
+
+HTTPD_CONF="/etc/apache/httpd.conf"

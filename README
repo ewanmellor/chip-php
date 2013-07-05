@@ -1,0 +1,144 @@
+CHIP: Code Highlighting in PHP
+==============================
+
+Version 2.7.0
+-------------
+
+CHIP is a simple source code highlighter designed to be used on webservers.
+It takes C, C++, Java, Lisp, Python, PHP, HTML, or JavaScript code, and
+outputs an XHTML version of that code, with appropriate highlighting.
+
+CHIP contains measures to protect against spambots: any email addresses in the
+input file are obfuscated in the output, and then this obfuscation is
+corrected by a JavaScript function.  This should stymie any searches for email
+addresses as it is too expensive for spiders to execute JavaScript in their
+search for addresses.  In order that the addresses are not found in the plain
+version instead, the links to those files are obfuscated too.  This means that
+spiders, both for respectable search engines and disreputable spammers, will
+not be able to follow those links.
+
+CHIP is open source, covered by the MIT Licence
+<http://www.opensource.org/licenses/mit-license.html>.
+
+
+Requirements
+------------
+
+PHP >= 4.1.0.
+
+
+Installation
+------------
+
+Note that there is a prepackaged version of CHIP available for Debian.
+
+CHIP may be run either in a webserver environment, or directly from the
+command line.
+
+To run from the command line, simply run "php chip.php"; a guide to the
+command line parameters will be printed.  Here, "php" is the PHP CLI
+executable, which may instead be called "php4" in your environment, or may not
+even be installed at all.  For Debian, you want to install the php4-cgi
+package.  For compliation of PHP from source, you want the --enable-cli
+configuration option.
+
+For installation in a webserver environment, place all the files on your
+webserver and enable PHP in the normal way.  For Debian / Apache / PHP, you
+want to install the php4 package and then the CHIP package and the Apache
+configuration will be performed automatically.
+
+You may need to change the extensions of the PHP files to match the
+configuration of your webserver.  Call this script with the URL
+http://yourserver/chip/chip.php?file=/path/to/my_file.ext in order to
+highlight /path/to/my_file.ext.  That file must be accessible through your
+webserver using that path.
+
+You may optionally add a title parameter to specify the title to be applied to
+the page.
+
+You may optionally add parameters to indicate the titles and URLs for
+breadcrumb parts.  The parameters should be named bcURL0 and bcTitle0, bcURL1
+and bcTitle1, and so on.
+
+You may optionally add a linenumbers=1 or linenumbers=0 parameter to enable or
+disable line numbers, respectively.
+
+You may optionally add a transitions=n parameter where n is the code
+representing a particular page-entry transition.  n may be -1, disabling
+the transition altogether.  (Page-entry transitions are IE-specific.)
+
+The extension of the file is used to determine how it should be highlighted.
+If the file to be highlighted is treated as executable by your webserver then
+highlighting will fail, as the webserver will refuse to give you the source
+code.  In this case, you must link to or rename that file so that it may be
+highlighted.  My server treats files with the .php extension as executable PHP
+code, but not .php4, so for files that I wish to have highlighted, I use the
+latter extension instead.  You could use -php.txt instead, for example.
+
+
+Customisation
+-------------
+
+The extension of the file is used to determine how it should be highlighted.
+The behaviour in this respect is determined by $behaviourMap in chip.php.
+
+The first section of chip.php contains things that you may wish to configure
+($behaviourMap, various flags, and the appearance functions).  In the global
+namespace you have $path, the path requested as the query parameter "file";
+$filename, equal to basename($path); and $title, the title of the page as
+given by the query parameter "title", or $filename by default.
+
+
+Testing
+-------
+
+There are some regression tests that can be executed by running the script
+<install directory>/tests/run-tests.sh.
+
+
+Copyright Notice and Licence
+----------------------------
+
+Apart from the file rot13.js, every part of CHIP is covered by the following
+notice and licence:
+
+Copyright (c) 2004-2005 Ewan Mellor <chip@ewanmellor.org.uk>.  All rights
+reserved.
+
+This software is covered by the MIT Licence
+<http://www.opensource.org/licenses/mit-license.html>:
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+    THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+    DEALINGS IN THE SOFTWARE.
+
+
+rot13.js is in the public domain, and covered by the following notice:
+
+Rot13 functions by Valentin Hilbig, who has placed them in the public domain.
+<http://tools.geht.net/rot13.html>.
+
+Improvements have been made by Ewan Mellor <rot13@ewanmellor.org.uk>, who has
+also placed his code in the public domain.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

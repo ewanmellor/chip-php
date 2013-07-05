@@ -1,0 +1,34 @@
+#!/bin/sh
+
+set -eu
+
+S="/usr/share/chip"
+
+. "$S/instrm-helper"
+
+function rmLink()
+{
+  if [ -h "$S/$1" ]
+  then
+    rm "$S/$1"
+  fi
+}
+
+rmLink chip.css
+rmLink chip-ie.css
+
+if [ "$1" != "upgrade" ] && [ -e "$HTTPD_CONF" ]
+then
+  C=$(echo -n "$COMMENT_BLOCK" | tr '\n' '\1')
+
+  if cat "$HTTPD_CONF" | tr '\n' '\1' | sed -e "s/$C//g" | tr '\1' '\n' |
+    grep -v "$LINE" >"$HTTPD_CONF.chip-new"
+  then
+    chmod -r "$HTTPD_CONF" "$HTTPD_CONF.chip-new"
+    mv -f "$HTTPD_CONF.chip-new" "$HTTPD_CONF"
+  else
+    rm -f "$HTTPD_CONF.chip-new"
+  fi
+
+  invoke-rc.d apache reload
+fi

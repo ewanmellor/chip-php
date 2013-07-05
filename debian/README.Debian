@@ -1,0 +1,19 @@
+CHIP: Code Highlighting in PHP
+==============================
+
+Please see the file /usr/share/doc/chip/README for more information.
+
+CHIP can be run either in a webserver environment, or directly from the
+command line.  To run under Apache, you want the php4 package.  To run from
+the command line you want the php4-cgi package.  The regression tests use the
+command line PHP, and so require the php4-cgi package to be installed.
+
+The CHIP Debian package installs its code in /usr/share/chip, and then
+configures Apache (if installed) to reference that directory under the alias
+/chip/.  If you are not using Apache, you must configure access to this
+directory yourself.  The CSS files are placed in /etc/chip, and then symlinks
+are placed so that they are visible from /usr/share/chip also.
+
+To disable CHIP under Apache, comment out the line placed in
+/etc/apache/httpd.conf.  If you remove this line then it will be reinstated on
+upgrade, but if you comment it out, then it will be preserved.
